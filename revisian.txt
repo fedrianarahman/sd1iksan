@@ -1,0 +1,34 @@
+#Revisi
+<-----halaman admin------>
+1. halaman jadwal pelajaran bisa dilihat oleh guru dan siswa dan bisa di print dan rapihkan
+2. halaman data guru penomoaran 
+3. halaman data user sesuaikan dengan jenis kelamin, dan aksi belum selesai
+4. data wali kelas A dan B
+5. halaman profile bereskan 
+6. pada halaman dashboard kelas 5 id nya diganti
+<-----halaman admin------>
+
+<-----halaman guru------>
+1. pada halaman dashboar guru, hilangkan kelas dan id nya
+2. tambahkan jadwal pejaran
+3. data siswa dibuat 10 record
+4. halaman detail siswa rapihkan gak usah pake penomoran
+5. halaman profile rapihkan 
+6. halaman edit siswa
+7. halaman detail raport disamakan dengan yang di siswa dan tambahkan halaman kembali ke data raport
+8. untuk status raportnya pending hilangkan icon matanya
+<-----halaman guru------>
+
+<-----halaman siswa------>
+1. halaman dashboard rapihkan 
+2. tambahkan halaman jadwal pelajaran
+3. pada halaman raport siswa tanggal sesuaikan
+4. halaman profile user, rapihkan
+<-----halaman siswa------>
+
+#yang sudah dikerjakan
+1. merapihkan halaman input nilai
+2. menyesuaikan deskripsi nilai pelajaran dan nilai keterampilan pada print raport
+3. Merapihkan Data Kelas
+4. menambahkan nama dan role pada navbar
+5. dipenambahan siswa hilangkan roll siswa (otomatis siswa) dan guru pun sama 
