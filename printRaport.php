@@ -29,7 +29,7 @@ require_once('./tcpdf/examples/tcpdf_include.php');
 include './controller/conn.php';
 // menangkap data siswa
 $id_siswa = $_GET['id_siswa'];
-$getDataSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis,user.nisn AS nisn,kelas.kelas AS kelas FROM user INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id = '$id_siswa'");
+$getDataSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis,user.nisn AS nisn,user.kelas AS kelas FROM user  WHERE user.id = '$id_siswa'");
 $dataSiswa = mysqli_fetch_array($getDataSiswa);
 $sekolah = "SDN LEUWILIANG 01";
 $alamatSekolah = "JL.RAYA LEUWILIANG";
@@ -49,7 +49,18 @@ $nilaiJumlahPelajaran = mysqli_fetch_all($ambilNilaiRataRata, MYSQLI_ASSOC);
 $jumlahNilai = array_sum(array_column($nilaiJumlahPelajaran, 'nilai_pelajaran'));
 $nilaiRataRata = $jumlahNilai / $jumlahPelajaran;
 
+//ambil Data Kesehatan
+$getdataKesehatan = mysqli_query($conn, "SELECT * FROM raport INNER JOIN kesehatan ON kesehatan.id = raport.j_kesehatan"); 
 
+//ambil wakel
+$getDataWakel = mysqli_query($conn, "SELECT * FROM raport WHERE idSiswa = '$id_siswa'");
+$dataWakel = mysqli_fetch_array($getDataWakel); 
+$tglInput = strtotime($dataWakel['created_at']);  
+$tglRapot =   date('d F Y',$tglInput);
+
+// ambil data kepsek
+$getDataKepsek = mysqli_query($conn, "SELECT * FROM user WHERE tugas_lain = 'Kepala Sekolah'");
+$dataKepsek = mysqli_fetch_array($getDataKepsek);
 // create new PDF document
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
@@ -102,7 +113,7 @@ $html3 = '<p style="font-size:11px;">Nomor Induk/NISN    : ' . $dataSiswa['nis']
 $html4 = '<p style="font-size:11px;">Nama Sekolah   : ' . $sekolah . '</p>';
 $html5 = '<p style="font-size:11px;">Alamat Sekolah : ' . $alamatSekolah . '</p>';
 $html6 = '<p style="font-size:11px;">Kelas    : ' . $dataSiswa['kelas'] . '</p>';
-$html7 = '<p style="font-size:11px;">Semester : 1 (Satu)</p>';
+$html7 = '<p style="font-size:11px;">Semester : 2 (Dua)</p>';
 $html8 = '<p style="font-size:11px;">Tahun Ajaran : 2023/2024</p>';
 $html9 = '<h2 style="font-size:14px;">A. SIKAP</h2>';
 $html10 = '<style>
@@ -423,27 +434,19 @@ th.bold{
     <th style="text-align: center" class="bold">Aspek Yang Dinilai </th>
     <th style="text-align: center" class="bold">Keterangan</th>
 </tr>
-<tr>
-   <td class="bold">1</td>
-   <td >Pendengeran</td>
-   <td >BAIK</td>
-</tr>
-<tr>
-   <td class="bold">2</td>
-   <td >Penglihatan</td>
-   <td >BAIK</td>
-</tr>
-<tr>
-   <td class="bold">3</td>
-   <td >Gigi</td>
-   <td >BAIK</td>
-</tr>
-<tr>
-   <td class="bold">4</td>
-   <td >Lainya</td>
-   <td >BAIK</td>
-</tr>
-</table>';
+';
+    $no =1;
+    while ($dataKesehatan = mysqli_fetch_array($getdataKesehatan)) {
+       
+        $html21 .= '
+        <tr>
+        <td class="bold">'.$no.'</td>
+        <td >'.$dataKesehatan['jenis_kesehatan'].'</td>
+        <td >'.$dataKesehatan['ket_kesehatan'].'</td>
+        </tr>';
+        $no++; // Increment nomor urut
+    }
+$html21.='</table>';
 $html22='<h2 style="font-size:14px;">G. PRESTASI</h2>';
 $html23='<style>
 table {
@@ -563,20 +566,21 @@ peserta didik dinyatakan:</td>
 $html27='<p>Mengetahui 
 Orang Tua/Wali</p>';
 $html28='................';
-$html30='................';
-$html29='<p>Leuwiliang, 03 Agustus 2023<br/>Wali Kelas</p>';
+$html30=$dataWakel['wali_kelas'];
+$html29='<p>Leuwiliang, '.$tglRapot.'<br/>Wali Kelas</p>';
 $html31 = 'Mengetahui
 Kepala Sekolah';
-$html32 = '................';
+$html32 = $dataKepsek['nama'];
 $pdf->writeHTMLCell(0, 0, '', '', $html24, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, '', 18, $html25, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, 120, 18, $html26, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, '', 78, $html27, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, 25, 98, $html28, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, 125, 98, $html28, 0, 1, 0, true, '', true);
+$pdf->writeHTMLCell(0, 0, 120, 98, $html30, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, 120, 78, $html29, 0, 1, 0, true, '', true);
 $pdf->writeHTMLCell(0, 0, 65, 115, $html31, 0, 1, 0, true, '', true);
-$pdf->writeHTMLCell(0, 0, 85, 135, $html32, 0, 1, 0, true, '', true);
+$pdf->writeHTMLCell(0, 0, 60, 135, $html32, 0, 1, 0, true, '', true);
 $pdf->Output('RaportSiswa.pdf', 'I');
 
 //============================================================+

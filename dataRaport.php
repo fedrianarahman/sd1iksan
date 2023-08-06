@@ -2,6 +2,7 @@
 session_start();
 include "./controller/conn.php";
 $id_siswa = $_SESSION['idSiswa'];
+$kelas = $_SESSION['kelas'];
 ?>
 
 
@@ -158,7 +159,7 @@ $id_siswa = $_SESSION['idSiswa'];
                              <div class="card-body">
                                 <div class="information">
                                     <?php
-                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,user.kelas AS kelas FROM user INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id ='$id_siswa'");
+                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,user.kelas AS kelas FROM user  WHERE user.id ='$id_siswa'");
                                     while ($dataSiswa = mysqli_fetch_array($getInfoSiswa)) {
                                     ?>
                                     <div class="row mb-4">
@@ -173,7 +174,7 @@ $id_siswa = $_SESSION['idSiswa'];
                                         <div class="col-md-6">
                                             <div class="information-content">
                                                 <p>Kelas : <span> <?php echo $dataSiswa['kelas']?></span></p>
-                                                <p>Semester : <span> 1 (satu)</span></p>
+                                                <p>Semester : <span> 2 (Dua)</span></p>
                                                 <p>Tahun Pelajaran : <span> 2023/2024</span></p>
                                             </div>
                                         </div>
@@ -347,26 +348,18 @@ $id_siswa = $_SESSION['idSiswa'];
                                                 <th style="text-align: center;border: 1px solid #000;" >Aspek Yang Dinilai </th>
                                                 <th style="text-align: center;border: 1px solid #000;" >Keterangan</th>
                                             </tr>
+                                            <?php
+                                            $getDataKesehatan = mysqli_query($conn, "SELECT * FROM raport INNER JOIN kesehatan ON kesehatan.id = raport.j_kesehatan ");
+                                            $i = 1;
+                                            while ($datakesehatan = mysqli_fetch_array($getDataKesehatan)) {
+                                            
+                                            ?>
                                             <tr>
-                                                <td class="bold" style="border: 1px solid #000;">1</td>
-                                                <td style="border: 1px solid #000;">Pendengeran</td>
-                                                <td style="border: 1px solid #000;">BAIK</td>
+                                                <td class="bold" style="border: 1px solid #000;"><?php echo $i++ ?></td>
+                                                <td style="border: 1px solid #000;"><?php echo $datakesehatan['jenis_kesehatan'] ?></td>
+                                                <td style="border: 1px solid #000;"><?php echo $datakesehatan['ket_kesehatan'] ?></td>
                                             </tr>
-                                            <tr>
-                                                <td class="bold" style="border: 1px solid #000;">2</td>
-                                                <td style="border: 1px solid #000;">Penglihatan</td>
-                                                <td style="border: 1px solid #000;">BAIK</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold" style="border: 1px solid #000;">3</td>
-                                                <td style="border: 1px solid #000;">Gigi</td>
-                                                <td style="border: 1px solid #000;">BAIK</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="bold" style="border: 1px solid #000;">4</td>
-                                                <td style="border: 1px solid #000;">Lainya</td>
-                                                <td style="border: 1px solid #000;"></td>
-                                            </tr>
+                                            <?php }?>
                                         </table>
                                     </div>
                                 </div>
@@ -441,15 +434,24 @@ $id_siswa = $_SESSION['idSiswa'];
                                     </div>
                                     <div class="col-md-6">
                                         <div class="paraf">
-                                        <p class="mengetahui">Leuwiliang, 03 Agustus 2023<br/>Wali Kelas,</p>
-                                        <p>.................</p>
+                                            <?php
+                                            $getDataWakel = mysqli_query($conn, "SELECT * FROM raport WHERE kelas = '$kelas'");
+                                            $dataWakel = mysqli_fetch_array($getDataWakel);
+
+                                            ?>
+                                        <p class="mengetahui">Leuwiliang, <?php $tglInput = strtotime($dataWakel['created_at']); echo date('d F Y',$tglInput) ?><br/>Wali Kelas,</p>
+                                        <p><?php echo $dataWakel['wali_kelas'] ?></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-md-12">
                                         <p style="text-align: center; margin-bottom:50px;">Mengetahui,<br/>Kepala Sekolah</p>
-                                        <p style="text-align: center;">..............</p>
+                                        <?php
+                                        $getDataKepalaSekolah = mysqli_query($conn, "SELECT * FROM user WHERE tugas_lain='Kepala Sekolah'");
+                                        $namaKepsek = mysqli_fetch_array($getDataKepalaSekolah);
+                                        ?>
+                                        <p style="text-align: center;"><?php echo $namaKepsek['nama'] ?></p>
                                     </div>
                                 </div>
                                 <div class="row mb-4">

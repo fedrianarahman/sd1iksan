@@ -23,7 +23,12 @@ $idKelas = $_SESSION['kelas'];
                         <ul aria-expanded="false">
                             <li><a href="dataGuru.php">Data Guru</a></li>
                             <li><a href="dataRole.php">Data Role</a></li>
-							<li><a href="dataUser.php">Data Siswa</a></li>
+							<?php
+							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access'");
+							while ($dataKelas = mysqli_fetch_array($query)) {
+							?>
+							<li><a href="dataUser.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>">Data Siswa <?php echo $dataKelas['kelas']?></a></li>
+							<?php }?>
                         </ul>
                     </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">

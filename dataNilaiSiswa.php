@@ -144,7 +144,7 @@ $kelas= $_SESSION['kelas'];
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role  LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
+                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa,raport.status_raport AS status_raport, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role  LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataSiswa)) {
                                             if ($data['kelas_siswa'] == $kelas ) {
@@ -155,9 +155,9 @@ $kelas= $_SESSION['kelas'];
                                                 <td><?php echo $data['nis_siswa']?></td>
                                                 <td><?php echo $data['nisn_siswa']?></td>
                                                 <td><?php if ($data['raport_siswa']) {
-                                                    echo "<span class='badge badge-success text-white'>done</span>";
+                                                    echo "<span class='badge badge-success text-white'>Sudah Terisi</span>";
                                                 } else {
-                                                    echo"<span class='badge badge-warning text-white'>pending</span>";
+                                                    echo"<span class='badge  badge-danger text-white'>belum Ada Nilai</span>";
                                                 }
                                                 ?></td>
                                                 <td><?php echo $data['nama_ibu']?></td>
@@ -168,10 +168,10 @@ $kelas= $_SESSION['kelas'];
                                                         if ($data['raport_siswa']) {
                                                            
                                                         ?>
-                                                        <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+                                                        <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
                                                         <?php }?>
                                                         
-														<a href="addRaport.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+														<a href="addRaport.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>&nama_siswa=<?php echo $data['nama_siswa'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-plus"></i></a>
 														
 													</div>												
 												</td>												

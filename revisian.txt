@@ -36,3 +36,9 @@
 3. Merapihkan Data Kelas
 4. menambahkan nama dan role pada navbar
 5. dipenambahan siswa hilangkan roll siswa (otomatis siswa) dan guru pun sama 
+
+
+#yang akan dikerjakan malam ini
+1. raport 
+2. Data siswa di admin berdasarkan kelas done
+3. status raport 

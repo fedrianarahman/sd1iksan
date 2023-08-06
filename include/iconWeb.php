@@ -1,1 +1,1 @@
-<link rel="shortcut icon" type="image/png" href="images/user.jpg">
+<link rel="shortcut icon" type="image/png" href="./images/logo-fix.png">

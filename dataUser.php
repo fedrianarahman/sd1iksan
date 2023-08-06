@@ -1,7 +1,7 @@
 <?php
 session_start();
 include './controller/conn.php';
-
+$kelas = $_GET['nama_kelas'];
 ?>
 
 
@@ -143,7 +143,7 @@ include './controller/conn.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user,user.jenis_kelamin AS jenis_kelamin, user.kelas AS wali_kelas,role.role_name AS role_name  FROM user INNER JOIN role ON role.id = user.role  AND role.role_name ='siswa'");
+                                            $ambilDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user,user.jenis_kelamin AS jenis_kelamin, user.kelas AS wali_kelas,role.role_name AS role_name  FROM user INNER JOIN role ON role.id = user.role  AND role.role_name ='siswa' AND user.kelas = '$kelas'");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataUser)) {
                                             ?>
