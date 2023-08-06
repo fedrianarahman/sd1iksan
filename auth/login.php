@@ -6,8 +6,8 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $cekDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.username, user.password, user.nama, user.email, kelas.kelas, role.role_name 
-    FROM user INNER JOIN kelas ON kelas.id = user.kelas INNER JOIN role ON role.id = user.role");
+    $cekDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.username, user.password, user.nama, user.email, user.kelas, role.role_name 
+    FROM user  INNER JOIN role ON role.id = user.role");
 
     $loggedIn = false; // Flag untuk menandakan status login
 

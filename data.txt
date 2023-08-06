@@ -1,5 +1,31 @@
 
-sd1
-db=
-user=
-password=XcktY@}Q%3EF
+1
+Nama Lengkap :Entin Kartini Wiraatmaja, S.Pd.MM
+NIP : 196306151983052001
+Tugas Mengajar : -
+Jumlah Jam Mengajar : -
+Tugas Lain : Kepala Sekolah
+2
+Nama Lengkap :Nining Ratnaningsih, S.Pd.SD
+NIP : 196303281983052003
+Tugas Mengajar : Guru Kelas 1 A
+Jumlah Jam Mengajar : 24
+Tugas Lain : -
+3
+Nama Lengkap :Siti Nurbaeti, S.Pd
+NIP : 196411301984102001
+Tugas Mengajar : Guru Kelas 3 B
+Jumlah Jam Mengajar : 24
+Tugas Lain : -
+4
+Nama Lengkap :Wati Tikawati, S.Pd.SD
+NIP : 196312311983052008
+Tugas Mengajar : Guru Kelas 1 B
+Jumlah Jam Mengajar : 24
+Tugas Lain : -
+5
+Nama Lengkap :Yati Nurhayati, S.Pd.SD
+NIP : 196605061988032005
+Tugas Mengajar : Guru Kelas 3 A
+Jumlah Jam Mengajar : 24
+Tugas Lain : -

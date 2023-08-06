@@ -28,10 +28,10 @@ $idJadwal = $_GET['id_jadwal']
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleWeb.php' ?> | Edit Jadwal Pelajaran</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php' ?>
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -101,8 +101,8 @@ $idJadwal = $_GET['id_jadwal']
             <div class="container-fluid">
                 <div class="row page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Jadwal Pelajaran</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li> -->
                     </ol>
                 </div>
 
@@ -110,7 +110,7 @@ $idJadwal = $_GET['id_jadwal']
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tambah Jadwal Pelajaran <?php echo $nama_kelas ?></h4>
+                                <h4 class="card-title">Edit Jadwal Pelajaran <?php echo $nama_kelas ?></h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
@@ -127,7 +127,7 @@ $idJadwal = $_GET['id_jadwal']
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
                                                         <input hidden type="text" value="<?php echo $dataJadwal['id']?>" name="id_jadwal">
                                                         <input hidden type="text" value="<?php echo $dataJadwal['created_at']?>" name="created_at">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="jam_pelajaran">
+                                                    <select class=" wide form-control" id="validationCustom05" name="jam_pelajaran">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM jam_pelajaran");
@@ -148,7 +148,7 @@ $idJadwal = $_GET['id_jadwal']
                                               <div class="mb-3">
                                                 <label class="text-label form-label fw-bolder">Hari Senin</label>
                                                 <input hidden type="text" value="<?php echo $id ?>" name="id_kelas">
-                                                <select class="default-select wide form-control" id="validationCustom05" name="senin">
+                                                <select class=" wide form-control" id="validationCustom05" name="senin">
                                                     <option data-display="Select">Pilih</option>
                                                     <?php
                                                     $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -168,7 +168,7 @@ $idJadwal = $_GET['id_jadwal']
                                               <div class="mb-3">
                                                     <label class="text-label form-label fw-bolder">Hari Selasa</label>
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="selasa">
+                                                    <select class=" wide form-control" id="validationCustom05" name="selasa">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -189,7 +189,7 @@ $idJadwal = $_GET['id_jadwal']
                                               <div class="mb-3">
                                                     <label class="text-label form-label fw-bolder">Hari Rabu</label>
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="rabu">
+                                                    <select class=" wide form-control" id="validationCustom05" name="rabu">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -210,7 +210,7 @@ $idJadwal = $_GET['id_jadwal']
                                               <div class="mb-3">
                                                     <label class="text-label form-label fw-bolder">Hari Kamis</label>
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="kamis">
+                                                    <select class=" wide form-control" id="validationCustom05" name="kamis">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -231,7 +231,7 @@ $idJadwal = $_GET['id_jadwal']
                                               <div class="mb-3">
                                                     <label class="text-label form-label fw-bolder">Hari Jum'at</label>
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="jumat">
+                                                    <select class=" wide form-control" id="validationCustom05" name="jumat">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -253,7 +253,7 @@ $idJadwal = $_GET['id_jadwal']
                                                     <label class="text-label form-label fw-bolder">Hari Sabtu</label>
                                                         <input hidden type="text" value="<?php echo $id?>" name="id_kelas">
                                                         <input hidden type="text" value="<?php echo $nama_kelas?>" name="nama_kelas">
-                                                    <select class="default-select wide form-control" id="validationCustom05" name="sabtu">
+                                                    <select class=" wide form-control" id="validationCustom05" name="sabtu">
                                                         <option data-display="Select">Pilih</option>
                                                         <?php
                                                         $ambilDataKelas = mysqli_query($conn, "SELECT * FROM mapel");
@@ -347,8 +347,12 @@ $idJadwal = $_GET['id_jadwal']
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
     <script src="js/styleSwitcher.js"></script>
-
+    <?php }?>
 
 
 </body>

@@ -1,6 +1,8 @@
 <?php
 session_start();
-include "./controller/conn.php";
+include './controller/conn.php';
+$kelas = $_SESSION['kelas'];
+date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indonesia Bagian Barat)
 ?>
 
 
@@ -21,16 +23,16 @@ include "./controller/conn.php";
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title><?php include './include/titleWeb.php' ?> | Data Pelajaran</title>
+    <title><?php include './include/titleweb.php'  ?> | Data Absensi Siswa</title>
 
     <!-- FAVICONS ICON -->
     <?php include './include/iconWeb.php' ?>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-    <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
-
-    <!-- Style css -->
     <link href="css/style.css" rel="stylesheet">
+
 
 </head>
 
@@ -57,9 +59,17 @@ include "./controller/conn.php";
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include './include/navHeader.php'?>
+        <?php include './include/navHeader.php' ?>
         <!--**********************************
             Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Chat box start
+        ***********************************-->
+
+        <!--**********************************
+            Chat box End
         ***********************************-->
 
         <!--**********************************
@@ -87,12 +97,12 @@ include "./controller/conn.php";
                 <div class="row page-titles">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">Page</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Data Pelajaran</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Absensi</a></li>
                     </ol>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <?php
                         if (isset($_SESSION['status-info'])) {
                             echo '
@@ -116,45 +126,47 @@ include "./controller/conn.php";
                         ?>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Data Pelajaran</h4>
-                                <a class="btn btn-primary" href="./addPelajaran.php">Tambah</a>
+                                <h4 class="card-title">Data Absensi Siswa <?php echo $kelas ?></h4>
+                                <a class="btn btn-primary" href="./addAbsensi.php?kelas=<?php echo $kelas
+                                                                                        ?>">Tambah</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-responsive-md">
+                                    <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
-                                                <th><strong>Mapel</strong></th>
-                                                <th><strong>Aksi</strong></th>
-
+                                                <th>#</th>
+                                                <th>Nama</th>
+                                                <th>Keterangan</th>
+                                                <th>Tanggal</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                            $ambilDataKelas = mysqli_query($conn, "SELECT * FROM `mapel`");
+                                            <?php
+                                            $getDataAbsensi = mysqli_query($conn, "SELECT * FROM absensi WHERE idKelas = '$kelas'");
                                             $i = 1;
-                                            while ($data = mysqli_fetch_array($ambilDataKelas)) {
-
+                                            while ($dataAbsensi = mysqli_fetch_array($getDataAbsensi)) {
 
                                             ?>
                                                 <tr>
-                                                    <td><strong><?php echo $i?></strong></td>
-                                                    <td><?php echo $data["mapel"]?></td>
+                                                    <td><?php echo $i++ ?></td>
+                                                    <td><?php echo $dataAbsensi['nama_siswa'] ?></td>
+                                                    <td><?php if ($dataAbsensi['sakit']== null && $dataAbsensi['izin'] == null && $dataAbsensi['alpa']== null) {
+                                                        echo '<span class="badge light badge-success text-white">'.$dataAbsensi['hadir'].'</span>';
+                                                    }elseif($dataAbsensi['hadir']== null && $dataAbsensi['sakit'] == null && $dataAbsensi['alpa']== null){
+                                                        echo '<span class="badge badge-warning  text-white">'.$dataAbsensi['izin'].'</span>';
+                                                    }elseif($dataAbsensi['hadir']== null && $dataAbsensi['izin']== null && $dataAbsensi['alpa']== null) {
+                                                        echo '<span class="badge light badge-info text-white">'.$dataAbsensi['sakit'].'</span>';
+                                                    }elseif ($dataAbsensi['hadir']==null && $dataAbsensi['sakit']==null && $dataAbsensi['izin']== null) {
+                                                        echo '<span class="badge badge-danger light ">'.$dataAbsensi['alpa'].'</span>';
+                                                    }?></td>
+                                                    <td><?php $tglInput = strtotime($dataAbsensi['created_at']); echo date('F d Y',$tglInput) ?></td>
                                                     <td>
-                                                        <div class="d-flex">
-                                                            <a href="./editPelajaran.php?id_mapel=<?php echo $data['id'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-                                                            <a href="./controller/pelajaran/delete.php?id_mapel=<?php echo $data['id'] ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                                        </div>
+                                                        <a href="./editAbsensi.php?id_absensi=<?php echo $dataAbsensi['id'] ?>" class="btn btn-warning shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                                     </td>
-
                                                 </tr>
-                                                <?php
-                                                $i++;
-                                                ?>
-                                            <?php
-                                            }
-                                            ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -200,27 +212,27 @@ include "./controller/conn.php";
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
     <script src="vendor/global/global.min.js"></script>
     <script src="vendor/chart.js/Chart.bundle.min.js"></script>
-    <script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
     <!-- Apex Chart -->
     <script src="vendor/apexchart/apexchart.js"></script>
 
-    <script src="vendor/chart.js/Chart.bundle.min.js"></script>
+    <!-- Datatable -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="js/plugins-init/datatables.init.js"></script>
 
-    <!-- Chart piety plugin files -->
-    <script src="vendor/peity/jquery.peity.min.js"></script>
-    <!-- Dashboard 1 -->
-    <script src="js/dashboard/dashboard-1.js"></script>
-
-    <script src="vendor/owl-carousel/owl.carousel.js"></script>
+    <script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+
+    ?>
+        <script src="js/styleSwitcher.js"></script>
+    <?php } ?>
+
 
 </body>
 

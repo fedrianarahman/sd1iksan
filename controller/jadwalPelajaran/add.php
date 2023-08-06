@@ -21,7 +21,7 @@ if (isset($_POST['istirahat'])) {
     $sabtu = "istirahat";
 }
 // cek data
-$cek = mysqli_query($conn, "SELECT * FROM jadwal_pelajaran WHERE waktu = '$jam'");
+$cek = mysqli_query($conn, "SELECT * FROM jadwal_pelajaran WHERE waktu = '$jam' AND idKelas = '$idKelas'");
 $r = mysqli_fetch_array($cek);
 
 if ($r) {

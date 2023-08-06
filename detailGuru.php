@@ -132,8 +132,8 @@ $idGuru = $_GET['id_guru'];
 									<table class="table table-responsive-md">
 										<thead>
 											<tr>
-												<th style="width:80px;"><strong>#</strong></th>
 												<th><strong>Nama</strong></th>
+												<th><strong>NIP</strong></th>
 												<th><strong>Wali Kelas</strong></th>
 												<th><strong>Email</strong></th>
 												<th><strong>No Hp</strong></th>
@@ -144,7 +144,7 @@ $idGuru = $_GET['id_guru'];
 										</thead>
 										<tbody>
 										<?php
-										$ambilDataGuru = mysqli_query($conn, "SELECT * FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id = '$idGuru'");
+										$ambilDataGuru = mysqli_query($conn, "SELECT * FROM user INNER JOIN role ON role.id = user.role  WHERE user.id = '$idGuru'");
 										
 										$i = 1;
 										while ($data = mysqli_fetch_array($ambilDataGuru)) {
@@ -152,7 +152,6 @@ $idGuru = $_GET['id_guru'];
 										
 										?>
 											<tr>
-												<td><strong>01</strong></td>
 												<td>
 												<?php
 													if ($data['photo']!='') {
@@ -163,10 +162,16 @@ $idGuru = $_GET['id_guru'];
 														<div class="d-flex align-items-center"><img src="./images/image-profile/5.png" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama']?></span></div>
 													<?php }?>
 												</td>
+												<td><?php echo $data['nip_guru']?></td>
 												<td><?php echo $data['kelas']?></td>
 												<td><?php echo $data['email']?></td>
 												<td><?php echo $data['no_hp']?></td>
-												<td><?php echo $data['status']?></td>
+												<td><?php if ($data['status']=='y') {
+														echo '<span class="badge badge-success">Aktif</span>';
+													} else {
+														echo '<span class="badge badge-danger">Non Aktif</span>';
+													}
+													?></td>
 												<td><?php echo $data['alamat']?></td>
                                                 <td><?php echo $data['username']?></td>
 											</tr>

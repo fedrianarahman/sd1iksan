@@ -27,10 +27,10 @@ $nama_kelas = $_GET['nama_kelas'];
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- PAGE TITLE HERE -->
-	<title>Admin Dashboard</title>
+	<title><?php include './include/titleweb.php' ?> | Data Jadwal Pelajaran</title>
 
 	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<?php include './include/iconWeb.php' ?>
 	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
 	<link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -130,9 +130,9 @@ $nama_kelas = $_GET['nama_kelas'];
 						?>
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Jadwal Pelajaran <?php echo $nama_kelas ?></h4>
+								<h4 class="card-title">Jadwal Pelajaran <?php echo $nama_kelas  ?> </h4>
 								<?php
-								if ($_SESSION['level']=='guru'||'admin') {
+								if ($_SESSION['level']!= 'siswa' ) {
 									
 								?>
 								<a class="btn btn-primary" href="./addJadwalPelajaran.php?id=<?php echo $id ?>&nama_kelas=<?php echo $nama_kelas ?>">Tambah</a>
@@ -150,7 +150,11 @@ $nama_kelas = $_GET['nama_kelas'];
 												<th><strong>Kamis</strong></th>
 												<th><strong>Jumat</strong></th>
 												<th><strong>Sabtu</strong></th>
+												<?php
+												if ($_SESSION['level']!='siswa') {
+												?>
 												<th><strong>Aksi</strong></th>
+												<?php }?>
 											</tr>
 										</thead>
 										<tbody>
@@ -182,12 +186,17 @@ $nama_kelas = $_GET['nama_kelas'];
 													<td class="<?php if ($data['senin']=="istirahat") {
 														echo 'bg-warning fw-bolder text-white';
 													}?>"><?php echo $data['sabtu'] ?></td>
+													<?php
+													if ($_SESSION['level'] != 'siswa') {
+														
+													?>
 													<td>
 														<div class="d-flex">
 															<a href="./editJadwalPelajaran.php?id_jadwal=<?php echo $data['id_jadwal']?>&id_kelas=<?php echo $data['id_kelas']?>&nama_kelas=<?php echo $data['kelas']?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
 															<a href="./controller/Jadwalpelajaran/delete.php?id_jadwal=<?php echo $data['id_jadwal']?>&id_kelas=<?php echo $data['id_kelas']?>&nama_kelas=<?php echo $data['kelas']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 														</div>
 													</td>
+													<?php }?>
 												</tr>
 											<?php } ?>
 										</tbody>
@@ -255,9 +264,12 @@ $nama_kelas = $_GET['nama_kelas'];
 	<script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
 	<script src="js/demo.js"></script>
-	<script src="js/styleSwitcher.js"></script>
-
-
+	<?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
+    <script src="js/styleSwitcher.js"></script>
+    <?php }?>
 
 </body>
 

@@ -18,12 +18,12 @@ $idKelas = $_SESSION['kelas'];
 					
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 						<i class="fas fa-info-circle"></i>
-							<span class="nav-text"> Guru</span>
+							<span class="nav-text"> Users</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="dataGuru.php">Data Guru</a></li>
                             <li><a href="dataRole.php">Data Role</a></li>
-							<li><a href="dataUser.php">Data Users</a></li>
+							<li><a href="dataUser.php">Data Siswa</a></li>
                         </ul>
                     </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
@@ -82,7 +82,7 @@ $idKelas = $_SESSION['kelas'];
 						</a>
                         <ul aria-expanded="false">
                             <?php
-							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access' AND kelas.kelas ='$idKelas'");
+							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas = '$idKelas' ");
 							while ($dataKelas = mysqli_fetch_array($query)) {
 							?>
 							<li><a href="dataJadwalPelajaran.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>"><?php echo $dataKelas['kelas']?></a></li>
@@ -100,6 +100,7 @@ $idKelas = $_SESSION['kelas'];
 						</a>
                         <ul aria-expanded="false">
 							<li><a href="dataSiswa.php">Data Siswa</a></li>
+							<li><a href="dataAbsensi.php">Data Absensi</a></li>
 							<li><a href="dataNilaiSiswa.php">Data Raport</a></li>
                         </ul>
                     </li>
@@ -120,7 +121,7 @@ $idKelas = $_SESSION['kelas'];
 						</a>
                         <ul aria-expanded="false">
                             <?php
-							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access' AND kelas.kelas ='$idKelas'");
+							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas = '$idKelas'");
 							while ($dataKelas = mysqli_fetch_array($query)) {
 							?>
 							<li><a href="dataJadwalPelajaran.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>"><?php echo $dataKelas['kelas']?></a></li>

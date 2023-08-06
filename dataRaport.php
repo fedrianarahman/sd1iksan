@@ -23,7 +23,7 @@ $id_siswa = $_SESSION['idSiswa'];
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleweb.php' ?>| Data Raport</title>
 
     <!-- FAVICONS ICON -->
     <link rel="shortcut icon" type="image/png" href="images/favicon.png">
@@ -524,8 +524,12 @@ $id_siswa = $_SESSION['idSiswa'];
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
     <script src="js/styleSwitcher.js"></script>
-
+    <?php }?>
 </body>
 
 </html>

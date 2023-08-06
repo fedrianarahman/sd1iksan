@@ -22,10 +22,10 @@ $kelas= $_SESSION['kelas'];
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- PAGE TITLE HERE -->
-	<title>Admin Dashboard</title>
+	<title><?php include'./include/titleweb.php'  ?> | Data Nilai Siswa</title>
 
 <!-- FAVICONS ICON -->
-<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php' ?>
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
@@ -238,8 +238,12 @@ $kelas= $_SESSION['kelas'];
     <script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
 	<script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
     <script src="js/styleSwitcher.js"></script>
-
+    <?php }?>
 
 
 </body>

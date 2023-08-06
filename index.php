@@ -5,7 +5,7 @@ if (!isset($_SESSION['nama'])) {
     header("Location: ./auth/login.php");
     exit();
 }
-
+include './controller/conn.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +25,10 @@ if (!isset($_SESSION['nama'])) {
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleweb.php'?>| Dashboard</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php'?>
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -94,7 +94,68 @@ if (!isset($_SESSION['nama'])) {
                         <li class="breadcrumb-item"><a href="javascript:void(0)"><?php echo $_SESSION['nama']?>
                     </ol>
                 </div>
-
+                <?php
+                if ($_SESSION['level'] == 'admin') {
+                ?>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="./dataGuru.php">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php
+                            $getDataGuru = mysqli_query($conn, "SELECT * FROM user WHERE role = '3'");
+                            $dataGuru = mysqli_num_rows($getDataGuru)
+                            ?>
+                            <h2 class="text-center text-success fw-bold"><?php echo $dataGuru ?></h2>
+                            <p class="text-center fs-20 fw-bold"> Data Guru</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="./dataUser.php">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php
+                            $getDatasiswa = mysqli_query($conn, "SELECT * FROM user WHERE role = '4'");
+                            $datasiswa = mysqli_num_rows($getDatasiswa)
+                            ?>
+                            <h2 class="text-center text-success fw-bold"><?php echo $datasiswa ?></h2>
+                            <p class="text-center fs-20 fw-bold"> Data Siswa</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="./dataKelas.php">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php
+                            $getDataKelas = mysqli_query($conn ,"SELECT * FROM kelas");
+                            $dataKelas = mysqli_num_rows($getDataKelas);
+                            ?>
+                            <h2 class="text-center text-success fw-bold"><?php echo $dataKelas ?></h2>
+                            <p class="text-center fs-20 fw-bold"> Data Kelas</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="./dataPelajaran.php">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php
+                            $getDataMapel = mysqli_query($conn, "SELECT * FROM mapel");
+                            $dataMapel = mysqli_num_rows($getDataMapel);
+                            ?>
+                            <h2 class="text-center text-success fw-bold"><?php echo $dataMapel ?></h2>
+                            <p class="text-center fs-20 fw-bold"> Data Pelajaran</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <?php }?>
             </div>
         </div>
         <!--**********************************

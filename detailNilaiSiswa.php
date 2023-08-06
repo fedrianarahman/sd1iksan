@@ -23,10 +23,10 @@ $id_siswa = $_GET['id_siswa'];
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleweb.php' ?> | Detail Nilai Siswa</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php' ?>
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -524,8 +524,12 @@ $id_siswa = $_GET['id_siswa'];
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
     <script src="js/styleSwitcher.js"></script>
-
+    <?php }?>
 </body>
 
 </html>

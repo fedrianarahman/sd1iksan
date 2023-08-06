@@ -1,7 +1,7 @@
 <?php
 session_start();
 include './controller/conn.php';
-$kelas= $_SESSION['kelas'];
+
 ?>
 
 
@@ -22,16 +22,16 @@ $kelas= $_SESSION['kelas'];
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- PAGE TITLE HERE -->
-	<title><?php include './include/titleweb.php'?> | Data Siswa</title>
+	<title>SDN 01 Leuwiliang| Data Guru</title>
 
-<!-- FAVICONS ICON -->
-    <?php include './include/iconWeb.php' ?>
+	<!-- FAVICONS ICON -->
+	<?php include './include/iconWeb.php' ?>
+	<?php include './include/iconWeb.php' ?>
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
 	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
 
 </head>
 
@@ -58,7 +58,7 @@ $kelas= $_SESSION['kelas'];
 		<!--**********************************
             Nav header start
         ***********************************-->
-        <?php include './include/navHeader.php'?>
+		<?php include './include/navHeader.php'?>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -95,14 +95,14 @@ $kelas= $_SESSION['kelas'];
 			<div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Page</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Siswa</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
 					</ol>
 				</div>
 
 				<div class="row">
-                <div class="col-12">
-                <?php
+					<div class="col-lg-12">
+					<?php
                         if (isset($_SESSION['status-info'])) {
                             echo '
                     <div class="alert alert-success solid alert-end-icon alert-dismissible fade show">
@@ -123,64 +123,79 @@ $kelas= $_SESSION['kelas'];
                             unset($_SESSION['status-fail']);
                         }
                         ?>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Data Siswa <?php echo $kelas?></h4>
-                                <a class="btn btn-primary" href="./addSiswa.php">Tambah</a>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="example3" class="display" style="min-width: 845px">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nama</th>
-                                                <th>NIS</th>
-                                                <th>NISN</th>
-                                                <th>Kelas</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Wali Murid</th>
-                                                <th>No HP Wali</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa,user.no_hp AS no_hp_siswa,user.jenis_kelamin AS jenis_kelamin, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa FROM user INNER JOIN role ON role.id = user.role  WHERE role.id = '4'");
-                                            $i = 1;
-                                            while ($data = mysqli_fetch_array($ambilDataSiswa)) {
-                                            if ($data['kelas_siswa'] == $kelas) {
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $i;?></td>
-                                                <td><?php echo $data['nama_siswa']?></td>
-                                                <td><?php echo $data['nis_siswa']?></td>
-                                                <td><?php echo $data['nisn_siswa']?></td>
-                                                <td><?php echo $data['kelas_siswa']?></td>
-                                                <td><?php if ($data['jenis_kelamin']=='L') {
-                                                    echo 'Laki-Laki';
-                                                }else{
-                                                    echo 'Perempuan';
-                                                }?></td>
-                                                <td><?php echo $data['nama_ibu']?></td>
-                                                <td><?php echo $data['no_hp_siswa']?></td>
-                                                <td>
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Data Guru</h4>
+								<a class="btn btn-primary" href="./addGuru.php">Tambah</a>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="example3" class="display" style="min-width: 845px">
+										<thead>
+											<tr>
+												<th style="width:80px;"><strong>#</strong></th>
+												<th><strong>Nama</strong></th>
+												<th><strong>NIP</strong></th>
+												<th><strong>Tugas Mengajar/Wali Kelas</strong></th>
+												<!-- <th><strong>Jam Ngajar Per Minggu</strong></th> -->
+												<th><strong>No Hp</strong></th>
+												<th><strong>Status</strong></th>
+												<th>Aksi</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php
+										$ambilDataGuru = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user, kelas.kelas AS wali_kelas  FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas WHERE role.id = 3");
+										
+										$i = 1;
+										while ($data = mysqli_fetch_array($ambilDataGuru)) {
+											
+										
+										?>
+											<tr>
+												<td><strong><?php echo $i ?></strong></td>
+												<td>
+													<?php
+													if ($data['photo']!='') {
+														
+													 ?>
+													 <div class="d-flex align-items-center"><img src="./images/image-profile/<?php echo $data['photo']?>" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama_user']?></span></div>
+													 <?php }else{?>
+														<div class="d-flex align-items-center"><img src="./images/image-profile/5.png" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama_user']?></span></div>
+													<?php }?>
+												</td>
+												<td>nip</td>
+												<td><?php echo $data['wali_kelas']?></td>
+												<!-- <td>24</td> -->
+												<td><?php echo $data['email_user']?></td>
+												<td><?php echo $data['no_hp_user']?></td>
+												<td>
+													<?php if ($data['status_user']=='y') {
+														echo '<span class="badge badge-success">Aktif</span>';
+													} else {
+														echo '<span class="badge badge-danger">Non Aktif</span>';
+													}
+													?>
+												</td>
+												<td>
 													<div class="d-flex">
-                                                    <a href="./detailSiswa.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
-														<a href="editSiswa.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-														<a href="./controller/siswa/delete.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-													</div>												
-												</td>												
-                                            </tr>
-                                            <?php $i++?>
-                                            <?php }?>
-                                            <?php }?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+														<a href="./detailGuru.php?id_guru=<?php echo $data['id_user']?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+														<a href="./editGuru.php?id_guru=<?php echo $data['id_user']?>" class="btn btn-primary shadow btn-xs sharp me-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+														<a href="./controller/guru/delete.php?id_guru=<?php echo $data['id_user']?>" class="btn btn-danger shadow btn-xs sharp" data-toggle="tooltip" title="hapus"><i class="fa fa-trash"></i></a>
+
+													</div>
+												</td>
+											</tr>
+											<?php
+											$i++;
+										}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -220,7 +235,7 @@ $kelas= $_SESSION['kelas'];
 	<!--**********************************
         Scripts
     ***********************************-->
-    <script src="vendor/global/global.min.js"></script>
+	<script src="vendor/global/global.min.js"></script>
     <script src="vendor/chart.js/Chart.bundle.min.js"></script>
 	<!-- Apex Chart -->
 	<script src="vendor/apexchart/apexchart.js"></script>
@@ -240,6 +255,7 @@ $kelas= $_SESSION['kelas'];
     ?>
     <script src="js/styleSwitcher.js"></script>
     <?php }?>
+
 
 
 </body>

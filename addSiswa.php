@@ -22,10 +22,10 @@ $kelas = $_SESSION['kelas'];
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleweb.php' ?> | Tambah Data Siswa</title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php' ?>
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -95,8 +95,8 @@ $kelas = $_SESSION['kelas'];
             <div class="container-fluid">
                 <div class="row page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Siswa</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li> -->
                     </ol>
                 </div>
 
@@ -104,7 +104,7 @@ $kelas = $_SESSION['kelas'];
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Form Validation</h4>
+                                <h4 class="card-title">Tambah Data Siswa</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
@@ -143,7 +143,7 @@ $kelas = $_SESSION['kelas'];
                                             </div>
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
-                                                    <label class="text-label form-label">Nama Ibu</label>
+                                                    <label class="text-label form-label">Nama Wali</label>
                                                     <input type="text" name="nama_ibu" class="form-control" placeholder="No Telpon" required>
                                                 </div>
                                             </div>
@@ -166,7 +166,7 @@ $kelas = $_SESSION['kelas'];
                                                     $ambilDataKelas = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas = '$kelas'");
                                                     while ($dataKelas = mysqli_fetch_array($ambilDataKelas)) {
                                                     ?>
-                                                        <input hidden type="text" name="kelas_id" class="form-control" placeholder="No Telpon" value="<?php echo $dataKelas['id'] ?>" required readonly>
+                                                        <input hidden type="text" name="kelas_id" class="form-control" placeholder="No Telpon" value="<?php echo $dataKelas['kelas'] ?>" required readonly>
                                                         <input type="text" name="kelas" class="form-control" placeholder="No Telpon" value="<?php echo $dataKelas['kelas'] ?>" required readonly>
                                                     <?php } ?>
                                                 </div>
@@ -256,8 +256,12 @@ $kelas = $_SESSION['kelas'];
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
     <script src="js/styleSwitcher.js"></script>
-
+    <?php }?>
 
 
 </body>

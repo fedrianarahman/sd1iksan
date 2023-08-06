@@ -22,10 +22,10 @@ include './controller/conn.php';
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- PAGE TITLE HERE -->
-	<title>Admin Dashboard</title>
+	<title><?php include './include/titleweb.php' ?> | Data Siswa</title>
 
 	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<?php include './include/iconWeb.php' ?>
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
     <!-- Custom Stylesheet -->
@@ -94,8 +94,8 @@ include './controller/conn.php';
 			<div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Page</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Data Siswa</a></li>
 					</ol>
 				</div>
 
@@ -124,7 +124,7 @@ include './controller/conn.php';
                         ?>
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Data Users</h4>
+								<h4 class="card-title">Data Data Siswa</h4>
 								
 							</div>
 							<div class="card-body">
@@ -143,7 +143,7 @@ include './controller/conn.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user,user.jenis_kelamin AS jenis_kelamin, kelas.kelas AS wali_kelas,role.role_name AS role_name  FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas WHERE kelas.kelas !='all access' AND role.role_name ='siswa'");
+                                            $ambilDataUser = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user,user.jenis_kelamin AS jenis_kelamin, user.kelas AS wali_kelas,role.role_name AS role_name  FROM user INNER JOIN role ON role.id = user.role  AND role.role_name ='siswa'");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataUser)) {
                                             ?>
@@ -157,7 +157,7 @@ include './controller/conn.php';
 													} elseif($data['jenis_kelamin']=='L' && $data['role_name']=='siswa') {
 														echo '<span class="badge light badge-warning">siswa</span>';
 													}elseif($data['jenis_kelamin']=='P' && $data['role_name']=='siswa') {
-														echo '<span class="badge light badge-warning">siswi</span>';
+														echo '<span class="badge light badge-primary">siswi</span>';
 													}?>
                                                 </td>
                                                 <td><?php echo $data['wali_kelas']?></td>

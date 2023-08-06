@@ -1,10 +1,12 @@
 <?php
 session_start();
 // Cek apakah sesi login telah diatur
+include './controller/conn.php';
 if (!isset($_SESSION['nama'])) {
     header("Location: ./auth/login.php");
     exit();
 }
+$kelas = $_GET['kelas'];
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ if (!isset($_SESSION['nama'])) {
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title><?php include './include/titleweb.php'?>|Tambah Data Kelas</title>
+    <title><?php include './include/titleweb.php' ?>|Tambah Data Absensi</title>
 
     <!-- FAVICONS ICON -->
     <?php include './include/iconWeb.php' ?>
@@ -60,7 +62,7 @@ if (!isset($_SESSION['nama'])) {
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include './include/navHeader.php'?>
+        <?php include './include/navHeader.php' ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -97,7 +99,7 @@ if (!isset($_SESSION['nama'])) {
             <div class="container-fluid">
                 <div class="row page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Kelas</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Absensi</a></li>
                     </ol>
                 </div>
 
@@ -105,23 +107,60 @@ if (!isset($_SESSION['nama'])) {
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tambah Data Kelas</h4>
+                                <h4 class="card-title">Input Absensi</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="needs-validation" novalidate="" action="./controller/kelas/add.php" method="POST">
-                                    <div class="row">
-												<div class="col-lg-12 mb-3">
-													<div class="mb-3">
-														<label class="text-label form-label">Kelas</label>
-														<input type="text" name="kelas" class="form-control" required="">
-													</div>
-												</div>
-                                                
-											</div>
-                                            <a href="./dataKelas.php" class="btn btn-warning text-white">Kembali</a >
-                                            <button class="btn btn-primary " style="float: right;">Save</button>
+                                    <form class="needs-validation" novalidate="" action="./controller/absensi/add.php" method="POST">
+                                        <?php
+                                        $getDatasiswa = mysqli_query($conn, "SELECT * FROM user WHERE kelas = '$kelas' AND role = '4' ");
+                                        $index = 0;
+                                        while ($dataNama = mysqli_fetch_array($getDatasiswa)) {
+                                        ?>
+                                            <div class="row">
+                                                <div class="col-lg-6 mb-3">
+                                                    <div class="mb-3">
+                                                        <label class="text-label form-label fw-bold">Nama Siswa</label>
+                                                        <input type="text" name="nama_siswa[]" class="form-control" readonly value="<?php echo $dataNama['nama'] ?>">
+                                                        <input hidden type="text" name="kelas" class="form-control" readonly value="<?php echo $kelas ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-3" style="margin-top: 30px;">
+                                                            <div class="form-check custom-checkbox mb-3 checkbox-success check-xl">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>a" required="" name="hadir[<?php echo $index ?>]" value="hadir">
+                                                                <label class="form-check-label text-success ml-4" for="customCheckBox<?php echo $index ?>a">Hadir</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
+                                                            <div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>b" required="" name="izin[<?php echo $index ?>]" value="izin">
+                                                                <label class="form-check-label fw-bold text-warning" for="customCheckBox<?php echo $index ?>b">Izin</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
+                                                            <div class="form-check custom-checkbox mb-3 checkbox-primary check-xl">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>c" required="" name="sakit[<?php echo $index ?>]" value="sakit">
+                                                                <label class="form-check-label text-primary" for="customCheckBox<?php echo $index ?>c">Sakit</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
+                                                            <div class="form-check custom-checkbox mb-3 checkbox-danger check-xl">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>d" required="" name="alpa[<?php echo $index ?>]" value="alpa">
+                                                                <label class="form-check-label text-danger" for="customCheckBox<?php echo $index ?>d">Alpa</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
+                                            $index++; // Increment index
+                                        } ?>
+                                        <a href="./dataAbsensi.php" class="btn btn-warning text-white">Kembali</a>
+                                        <button class="btn btn-primary" style="float: right;">Save</button>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -185,9 +224,11 @@ if (!isset($_SESSION['nama'])) {
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <?php if ($_SESSION['level'] == 'admin') {
 
-
+    ?>
+        <script src="js/styleSwitcher.js"></script>
+    <?php } ?>
 
 </body>
 

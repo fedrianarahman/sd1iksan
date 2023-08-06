@@ -153,8 +153,8 @@ $idGuru = $_GET['id_guru'];
                                                             while ($data = mysqli_fetch_array($ambilDataKelas)) {
                                                             ?>    
                                                              <option
-                                                              value="<?php echo $data["id"]?>"
-                                                              <?php if ($data['id']== $dataGuru['kelas']) {
+                                                              value="<?php echo $data["kelas"]?>"
+                                                              <?php if ($data['kelas']== $dataGuru['kelas']) {
                                                                 echo 'selected';
                                                               }?>>
                                                               <?php echo $data["kelas"] ?></option>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include './controller/conn.php';
-
+$kelas= $_SESSION['kelas'];
 ?>
 
 
@@ -22,16 +22,16 @@ include './controller/conn.php';
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- PAGE TITLE HERE -->
-	<title>SDN 01 Leuwiliang| Data Guru</title>
+	<title><?php include './include/titleweb.php'?> | Data Siswa</title>
 
-	<!-- FAVICONS ICON -->
-	<?php include './include/iconWeb.php' ?>
+<!-- FAVICONS ICON -->
+    <?php include './include/iconWeb.php' ?>
+    <!-- Datatable -->
+    <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
 	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
-	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+    <link href="css/style.css" rel="stylesheet">
 
-	<!-- Style css -->
-	<link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -58,7 +58,7 @@ include './controller/conn.php';
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<?php include './include/navHeader.php'?>
+        <?php include './include/navHeader.php'?>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -95,14 +95,14 @@ include './controller/conn.php';
 			<div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Page</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Siswa</a></li>
 					</ol>
 				</div>
 
 				<div class="row">
-					<div class="col-lg-12">
-					<?php
+                <div class="col-12">
+                <?php
                         if (isset($_SESSION['status-info'])) {
                             echo '
                     <div class="alert alert-success solid alert-end-icon alert-dismissible fade show">
@@ -123,36 +123,34 @@ include './controller/conn.php';
                             unset($_SESSION['status-fail']);
                         }
                         ?>
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">Recent Payments Queue</h4>
-								<a class="btn btn-primary" href="./addGuru.php">Tambah</a>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-responsive-md">
-										<thead>
-											<tr>
-												<th style="width:80px;"><strong>#</strong></th>
-												<th><strong>Nama</strong></th>
-												<th><strong>Wali Kelas</strong></th>
-												<th><strong>Email</strong></th>
-												<th><strong>No Hp</strong></th>
-												<th><strong>Status</strong></th>
-												<th>Aksi</th>
-											</tr>
-										</thead>
-										<tbody>
-										<?php
-										$ambilDataGuru = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user, kelas.kelas AS wali_kelas  FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas WHERE role.id = 3");
-										
-										$i = 1;
-										while ($data = mysqli_fetch_array($ambilDataGuru)) {
-											
-										
-										?>
-											<tr>
-												<td><strong><?php echo $i ?></strong></td>
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Data Data Guru</h4>
+                                <a class="btn btn-primary" href="./addGuru.php">Tambah</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example3" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nama</th>
+                                                <th>NIP</th>
+                                                <th>Tugas Mengajar/Wali Kelas</th>
+                                                <th>Jumlah Ngajar Per Minggu</th>
+                                                <th>Tugas Lain</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_user, user.nama AS nama_user,user.email AS email_user,user.nip_guru AS nip_guru,user.tugas_lain AS tugas_lain,user.jumlah_jam_mengajar AS jumlah_jam_mengajar,user.photo AS photo,user.no_hp AS no_hp_user,user.status AS status_user, user.kelas AS kelas  FROM user INNER JOIN role ON role.id = user.role  WHERE role.id = 3");
+                                            $i = 1;
+                                            while ($data = mysqli_fetch_array($ambilDataSiswa)) {
+											?>
+                                           <tr>
+												<td><strong><?php echo $i++ ?></strong></td>
 												<td>
 													<?php
 													if ($data['photo']!='') {
@@ -163,9 +161,24 @@ include './controller/conn.php';
 														<div class="d-flex align-items-center"><img src="./images/image-profile/5.png" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama_user']?></span></div>
 													<?php }?>
 												</td>
-												<td><?php echo $data['wali_kelas']?></td>
-												<td><?php echo $data['email_user']?></td>
-												<td><?php echo $data['no_hp_user']?></td>
+												<td><?php echo $data['nip_guru']?></td>
+												<td><?php if ($data['kelas'] == null) {
+                                                    echo "-";
+                                                } else{
+                                                    echo $data['kelas'];
+                                                }?></td>
+												<!-- <td>24</td> -->
+												<td><?php if ($data['jumlah_jam_mengajar']==null) {
+                                                    echo "-";
+                                                }else{
+                                                    echo $data['jumlah_jam_mengajar'];
+                                                }?></td>
+												<td><?php if ($data['tugas_lain']==null) {
+                                                    echo "-";
+                                                } else {
+                                                    echo $data['tugas_lain'];
+                                                }
+                                                ?></td>
 												<td>
 													<?php if ($data['status_user']=='y') {
 														echo '<span class="badge badge-success">Aktif</span>';
@@ -183,16 +196,13 @@ include './controller/conn.php';
 													</div>
 												</td>
 											</tr>
-											<?php
-											$i++;
-										}
-											?>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+                                            <?php }?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -232,28 +242,26 @@ include './controller/conn.php';
 	<!--**********************************
         Scripts
     ***********************************-->
-	<!-- Required vendors -->
-	<script src="vendor/global/global.min.js"></script>
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-
+    <script src="vendor/global/global.min.js"></script>
+    <script src="vendor/chart.js/Chart.bundle.min.js"></script>
 	<!-- Apex Chart -->
 	<script src="vendor/apexchart/apexchart.js"></script>
+	
+    <!-- Datatable -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="js/plugins-init/datatables.init.js"></script>
 
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
+	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-	<!-- Chart piety plugin files -->
-	<script src="vendor/peity/jquery.peity.min.js"></script>
-	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
-
-	<script src="vendor/owl-carousel/owl.carousel.js"></script>
-
-	<script src="js/custom.min.js"></script>
+    <script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
 	<script src="js/demo.js"></script>
-	<script src="js/styleSwitcher.js"></script>
-
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+        
+    ?>
+    <script src="js/styleSwitcher.js"></script>
+    <?php }?>
 
 
 </body>

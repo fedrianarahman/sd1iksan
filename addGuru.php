@@ -25,10 +25,10 @@ if (!isset($_SESSION['nama'])) {
     <meta name="format-detection" content="telephone=no">
 
     <!-- PAGE TITLE HERE -->
-    <title>Admin Dashboard</title>
+    <title><?php include './include/titleweb.php' ?></title>
 
     <!-- FAVICONS ICON -->
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <?php include './include/iconWeb.php' ?>
     <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
@@ -61,7 +61,7 @@ if (!isset($_SESSION['nama'])) {
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include './include/navHeader.php'?>
+        <?php include './include/navHeader.php' ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -98,8 +98,7 @@ if (!isset($_SESSION['nama'])) {
             <div class="container-fluid">
                 <div class="row page-titles">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Data Guru</a></li>
                     </ol>
                 </div>
 
@@ -107,88 +106,111 @@ if (!isset($_SESSION['nama'])) {
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Form Validation</h4>
+                                <h4 class="card-title">Tambah Data Guru</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
                                     <form class="needs-validation" novalidate="" method="POST" action="./controller/guru/add.php">
-                                    <div class="row">
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Nama</label>
-														<input type="text" name="nama" class="form-control" placeholder="nama guru" required="">
-                                                        
-													</div>
-												</div>
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Email </label>
-														<input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="email"
-                                                        required=""
-                                                        name="email">
-													</div>
-												</div>
-												<div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">No Telpon*</label>
-														<input type="text" name="no_hp" class="form-control" placeholder="No Telpon" required="">
-													</div>
-												</div>
-                                                <div class="col-lg-6 mb-3">
-													<div class="mb-3">
-														<label class="text-label form-label">Wali Kelas</label>
-														
-                                                        <select class="default-select wide form-control" id="validationCustom05" name="kelas">
-                                                            <option data-display="Select">Pilih</option>
-                                                            <?php
-                                                            $ambilDataKelas = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas != 'all access'");
-                                                            while ($data = mysqli_fetch_array($ambilDataKelas)) {
-                                                            ?>    
-                                                             <option value="<?php echo $data["id"]?>"><?php echo $data["kelas"] ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            
-                                                        </select>
-                                                    
-													</div>
-												</div>
-                                                <div class="col-lg-6 mb-3" style="display: none;">
-													<div class="mb-3">
-														<label class="text-label form-label">Guru</label>
-														
-                                                        <select class="default-select wide form-control" id="validationCustom05" name="role">
-                                                            <option data-display="Select">Pilih</option>
-                                                            <?php
-                                                            $ambilDataKelas = mysqli_query($conn, "SELECT * FROM role WHERE  role_name= 'guru'");
-                                                            while ($data = mysqli_fetch_array($ambilDataKelas)) {
-                                                            ?>    
-                                                             <option value="<?php echo $data["id"]?>"><?php echo $data["role_name"] ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            
-                                                        </select>
-                                                    
-													</div>
-												</div>
-                                                <div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Username</label>
-														<input type="text" name="username" class="form-control" placeholder="Username" required="">
-													</div>
-												</div>
-                                                <div class="col-lg-6 mb-2">
-													<div class="mb-3">
-														<label class="text-label form-label">Password</label>
-														<input type="password" name="password" class="form-control" placeholder="Password" required="">
-													</div>
-												</div>
-												
-                                                
-											</div>
-                                            <a href="./dataGuru.php" class="btn btn-warning text-white">Kembali</a >
-                                            <button class="btn btn-primary " type="submistyle="float: right;t" ">Save</button>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Nama</label>
+                                                    <input type="text" name="nama" class="form-control" placeholder="nama guru" required="">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">NIP</label>
+                                                    <input type="text" name="nip_guru" class="form-control" placeholder="NIP Guru" required="">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Email </label>
+                                                    <input type="email" class="form-control" id="inputGroupPrepend2" aria-describedby="inputGroupPrepend2" placeholder="email" required="" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">No Telpon*</label>
+                                                    <input type="text" name="no_hp" class="form-control" placeholder="No Telpon" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Wali Kelas</label>
+
+                                                    <select class=" wide form-control" id="validationCustom05" name="kelas">
+                                                        <option data-display="Select">Pilih</option>
+                                                        <?php
+                                                        $ambilDataKelas = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas != 'all access'");
+                                                        while ($data = mysqli_fetch_array($ambilDataKelas)) {
+                                                        ?>
+                                                            <option value="<?php echo $data["kelas"] ?>"><?php echo $data["kelas"] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-3" style="display: none;">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Guru</label>
+
+                                                    <select class="default-select wide form-control" id="validationCustom05" name="role">
+                                                        <option data-display="Select">Pilih</option>
+                                                        <?php
+                                                        $ambilDataKelas = mysqli_query($conn, "SELECT * FROM role WHERE  role_name= 'guru'");
+                                                        while ($data = mysqli_fetch_array($ambilDataKelas)) {
+                                                        ?>
+                                                            <option value="<?php echo $data["id"] ?>"><?php echo $data["role_name"] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Jumlah Mengajar Perminggu</label>
+                                                    <input type="text" name="jumlah_mengajar_perminggu" class="form-control" placeholder="Jumlah Mengajar Perminggu" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Tugas Lain</label>
+                                                    <input type="text" name="tugas_lain" class="form-control" placeholder="Tugas Lain" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Mengajar Khusus</label>
+                                                    <input type="text" name="mengajar_khusus" class="form-control" placeholder="Mengajar Pelajaran Khusus" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Username</label>
+                                                    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="text-label form-label">Password</label>
+                                                    <input type="password" name="password" class="form-control" placeholder="Password" required="">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <a href="./dataGuru.php" class="btn btn-warning text-white">Kembali</a>
+                                        <button class="btn btn-primary " type="submit" style="float: right;">Save</button>
                                     </form>
                                 </div>
                             </div>

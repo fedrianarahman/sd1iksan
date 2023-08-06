@@ -13,17 +13,22 @@ $nama = $_POST['nama'];
 $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $kelas = $_POST['kelas'];
-$role = $_POST['role'];
+$role = '3';
 $username = $_POST['username'];
 $password = $_POST['password'];
+// Tambahan
+$nip_guru = $_POST['nip_guru'];
+$tugasLain = $_POST['tugas_lain'];
+$mengajarKhusus =  $_POST['mengajar_khusus'];
+$jumlahJamPengajaran = $_POST['jumlah_mengajar_perminggu'];
 
 $ambilDataUser = mysqli_query($conn, "SELECT * FROM user WHERE kelas ='$kelas' ");
 $cekData = mysqli_fetch_array($ambilDataUser);
 
 if ($cekData) {
-    $_SESSION['status-fail'] = "Wali kelas sudah ada";
+    $_SESSION['status-fail'] = "Wali kelas sudah ada $kelas";
 }else{
-    $tambahDataGuru = mysqli_query($conn, "INSERT INTO `user`(`id`, `nama`, `photo`, `email`, `no_hp`, `username`, `password`, `alamat`, `kelas`, `status`, `role`) VALUES ('','$nama','photo','$email','$no_hp','$username','$password','alamat','$kelas','y','$role')");
+    $tambahDataGuru = mysqli_query($conn, "INSERT INTO `user`(`id`, `nama`, `email`, `no_hp`, `username`, `password`,  `kelas`, `status`, `role`,`tugas_mengajar`, `nip_guru`, `jumlah_jam_mengajar`, `tugas_lain`) VALUES ('','$nama','$email','$no_hp','$username','$password','$kelas','y','$role','$mengajarKhusus','$nip_guru','$jumlahJamPengajaran','$tugasLain')");
     
     if ($tambahDataGuru) {
         $_SESSION['status-info'] = "Data Berhasil Ditambahkan";

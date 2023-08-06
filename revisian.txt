@@ -25,7 +25,11 @@
 3. pada halaman raport siswa tanggal sesuaikan
 4. halaman profile user, rapihkan
 <-----halaman siswa------>
-
+#yang ingin dikerjakan malam ini
+1. merapihkan tampilan" yang tidak perlu
+2. membuat halaman data absensi
+3. membuat halaman guru sesuai yang di berikan
+4. Dashboard untuk di admin
 #yang sudah dikerjakan
 1. merapihkan halaman input nilai
 2. menyesuaikan deskripsi nilai pelajaran dan nilai keterampilan pada print raport
