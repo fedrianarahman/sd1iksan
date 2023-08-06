@@ -313,8 +313,11 @@ $idUser = $_SESSION['idSiswa'];
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+     ?>
     <script src="js/styleSwitcher.js"></script>
-   
+   <?php }?>
 </body>
 
 </html>

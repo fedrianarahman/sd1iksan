@@ -144,7 +144,7 @@ $kelas= $_SESSION['kelas'];
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, kelas.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
+                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role  LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataSiswa)) {
                                             if ($data['kelas_siswa'] == $kelas ) {

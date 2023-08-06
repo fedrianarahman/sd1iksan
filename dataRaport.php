@@ -158,7 +158,7 @@ $id_siswa = $_SESSION['idSiswa'];
                              <div class="card-body">
                                 <div class="information">
                                     <?php
-                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,kelas.kelas AS kelas FROM user INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id ='$id_siswa'");
+                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,user.kelas AS kelas FROM user INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id ='$id_siswa'");
                                     while ($dataSiswa = mysqli_fetch_array($getInfoSiswa)) {
                                     ?>
                                     <div class="row mb-4">

@@ -146,7 +146,7 @@ $idSiswa = $_GET['id_siswa'];
 										</thead>
 										<tbody>
 										<?php
-										$ambilDataGuru = mysqli_query($conn, "SELECT * FROM user INNER JOIN role ON role.id = user.role INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id = '$idSiswa'");
+										$ambilDataGuru = mysqli_query($conn, "SELECT * FROM user INNER JOIN role ON role.id = user.role  WHERE user.id = '$idSiswa'");
 										
 										$i = 1;
 										while ($data = mysqli_fetch_array($ambilDataGuru)) {
@@ -243,8 +243,11 @@ $idSiswa = $_GET['id_siswa'];
 	<script src="js/custom.min.js"></script>
 	<script src="js/dlabnav-init.js"></script>
 	<script src="js/demo.js"></script>
+	<?php
+	if ($_SESSION['level'] == 'admin') {
+	?>
 	<script src="js/styleSwitcher.js"></script>
-
+		<?php  }?>
 
 
 </body>
