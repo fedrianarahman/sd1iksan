@@ -126,7 +126,7 @@ $kelas = $_SESSION['kelas'];
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">NIS*</label>
-                                                    <input type="text" name="nis" class="form-control" placeholder="NIS" required>
+                                                    <input type="number" name="nis" class="form-control" placeholder="NIS" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-2">
@@ -143,8 +143,8 @@ $kelas = $_SESSION['kelas'];
                                             </div>
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
-                                                    <label class="text-label form-label">Nama orang tua/Wali</label>
-                                                    <input type="text" name="nama_ibu" class="form-control" placeholder="No Telpon" required>
+                                                    <label class="text-label form-label">Nama Orang Tua/Wali</label>
+                                                    <input type="text" name="nama_ibu" class="form-control" placeholder="Nama Orangtua" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-2" style="display: none;">
