@@ -134,16 +134,16 @@ $namaSiswa = $_GET['nama_siswa'];
                                             ?>
                                                 <div class="col-lg-12 mb-2">
                                                     <div class="mb-3">
-                                                        <label class="text-label form-label">Mata Pelajaran</label>
+                                                        <label class="text-label form-label"> Mata Pelajaran</label>
                                                         <!-- id siswa -->
-                                                        <input hidden  type="text" name="idSiswa" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataSiswa['id'] ?>">
+                                                        <input hidden  type="text" name="idSiswa" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value=" <?php echo $dataSiswa['id'] ?>">
                                                        
                                                         <!-- kelas siswa -->
                                                         <input hidden  type="text" name="kelas" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataSiswa['kelas'] ?>">
                                                         <!-- wali kelas -->
                                                         <input hidden type="text" name="wali_kelas" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $_SESSION['nama'] ?>">
                                                         <input hidden type="text" name="mapel_id[]" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataPelajaran['id'] ?>">
-                                                        <input type="text" name="nama_siswa" class="form-control " style="border-radius: 0; background:#F5F5F5;" placeholder="nama siswa" readonly required value="<?php echo $dataPelajaran['mapel'] ?>">
+                                                        <input type="text" name="nama_siswa" class="form-control " style="border-radius: 0; background:#F5F5F5; font-weight: 700;" placeholder="nama siswa" readonly required value="<?php echo strtoupper($dataPelajaran['mapel']) ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">

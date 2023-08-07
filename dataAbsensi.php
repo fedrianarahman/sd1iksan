@@ -128,7 +128,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                             <div class="card-header">
                                 <h4 class="card-title">Data Absensi Siswa <?php echo $kelas ?></h4>
                                 <a class="btn btn-primary" href="./addAbsensi.php?kelas=<?php echo $kelas
-                                                                                        ?>">Tambah</a>
+                                                                                        ?>">Absen</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
