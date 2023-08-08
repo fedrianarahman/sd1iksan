@@ -137,7 +137,7 @@ $kelas= $_SESSION['kelas'];
                                                 <th>Nama</th>
                                                 <th>NIS</th>
                                                 <th>NISN</th>
-                                                <th>Kelas</th>
+                                                <!-- <th>Kelas</th> -->
                                                 <th>Jenis Kelamin</th>
                                                 <th>Wali Murid</th>
                                                 <th>No HP Wali</th>
@@ -156,7 +156,7 @@ $kelas= $_SESSION['kelas'];
                                                 <td><?php echo $data['nama_siswa']?></td>
                                                 <td><?php echo $data['nis_siswa']?></td>
                                                 <td><?php echo $data['nisn_siswa']?></td>
-                                                <td><?php echo $data['kelas_siswa']?></td>
+                                                <!-- <td><?php echo $data['kelas_siswa']?></td> -->
                                                 <td><?php if ($data['jenis_kelamin']=='L') {
                                                     echo 'Laki-Laki';
                                                 }else{
