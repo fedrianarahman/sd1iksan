@@ -129,7 +129,7 @@ $namaSiswa = $_GET['nama_siswa'];
                                                 </div>
                                             </div>
                                             <?php
-                                            $ambilDataPelajaran = mysqli_query($conn, "SELECT * FROM mapel");
+                                            $ambilDataPelajaran = mysqli_query($conn, "SELECT * FROM mapel WHERE mapel != 'upacara'");
                                             while ($dataPelajaran = mysqli_fetch_array($ambilDataPelajaran)) {
                                             ?>
                                                 <div class="col-lg-12 mb-2">
