@@ -64,7 +64,7 @@ if ($result) {
     }
     
 }
-header("Location: ../../dataSiswa.php");
+header("Location: ../../dataUser.php?nama_kelas=$kelas_nama");
 exit(); // Menghentikan eksekusi kode selanjutnya
 
 

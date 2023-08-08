@@ -125,7 +125,7 @@ $kelas = $_GET['nama_kelas'];
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title">Data <?php echo $kelas ?></h4>
-								
+                                <a class="btn btn-primary" href="./addSiswa.php?kelas=<?php echo $kelas ?>">Tambah</a>
 							</div>
 							<div class="card-body">
                             <div class="table-responsive">
@@ -138,7 +138,7 @@ $kelas = $_GET['nama_kelas'];
                                                 <th>Role</th>
 												<th>kelas</th>
 												<th>Status </th>
-                                                <!-- <th>Aksi</th> -->
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -169,14 +169,13 @@ $kelas = $_GET['nama_kelas'];
                                                     }
                                                      ?>
                                                 </td>
-                                                <!-- <td>
-                                                <div class="d-flex">
-														<a href="#" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
-														<a href="#" class="btn btn-primary shadow btn-xs sharp me-1" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a>
-														<a href="./controller/user/delete.php?id_guru=<?php echo $data['id_user']?>" class="btn btn-danger shadow btn-xs sharp" data-toggle="tooltip" title="hapus"><i class="fa fa-trash"></i></a>
-
-													</div>
-                                                </td> -->
+                                                <td>
+													<div class="d-flex">
+                                                    <a href="./detailSiswa.php?id_siswa=<?php echo $data['id_user']?>&nama_kelas=<?php echo $kelas ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+														<a href="editSiswa.php?id_siswa=<?php echo $data['id_user']?>&nama_kelas=<?php echo $kelas ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+														<a href="./controller/siswa/delete.php?id_siswa=<?php echo $data['id_user']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+													</div>												
+												</td>		
                                             </tr>
                                             <?php $i++?>
                                             <?php }?>

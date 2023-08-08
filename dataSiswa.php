@@ -126,7 +126,7 @@ $kelas= $_SESSION['kelas'];
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Data Siswa <?php echo $kelas?></h4>
-                                <a class="btn btn-primary" href="./addSiswa.php">Tambah</a>
+                                <!-- <a class="btn btn-primary" href="./addSiswa.php">Tambah</a> -->
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -167,7 +167,7 @@ $kelas= $_SESSION['kelas'];
                                                 <td>
 													<div class="d-flex">
                                                     <a href="./detailSiswa.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
-														<a href="editSiswa.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+														<a href="editSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $kelas ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
 														<a href="./controller/siswa/delete.php?id_siswa=<?php echo $data['id_siswa']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 													</div>												
 												</td>												

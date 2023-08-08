@@ -1,7 +1,7 @@
 <?php
 session_start();
 include './controller/conn.php';
-$kelas = $_SESSION['kelas'];
+$kelas = $_GET['nama_kelas'];
 $idSiswa = $_GET['id_siswa'];
 ?>
 
@@ -244,7 +244,7 @@ $idSiswa = $_GET['id_siswa'];
 												
                                                 
 									</div>
-                                    <a href="./dataSiswa.php" class="btn btn-warning text-white">Kembali</a >
+                                    <a href="./dataUser.php?nama_kelas=<?php echo $kelas ?>" class="btn btn-warning text-white">Kembali</a >
                                     <button class="btn btn-primary " type="submit" style="float: right;">Save</button>
                                     </form>
                                 </div>

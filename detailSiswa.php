@@ -2,6 +2,7 @@
 session_start();
 include './controller/conn.php';
 $idSiswa = $_GET['id_siswa'];
+$kelas = $_GET['nama_kelas'];
 ?>
 
 
@@ -95,8 +96,8 @@ $idSiswa = $_GET['id_siswa'];
 			<div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Siswa</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Detail Siswa</a></li>
 					</ol>
 				</div>
 
@@ -125,7 +126,7 @@ $idSiswa = $_GET['id_siswa'];
                         ?>
 						<div class="card">
 							<div class="card-header">
-								<a class="btn btn-primary" href="./dataSiswa.php">Kembali</a>
+								<a class="btn btn-primary" href="./dataUser.php?nama_kelas=<?php echo $kelas ?>">Kembali</a>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">

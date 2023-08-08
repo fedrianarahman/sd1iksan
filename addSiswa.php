@@ -1,7 +1,7 @@
 <?php
 session_start();
 include './controller/conn.php';
-$kelas = $_SESSION['kelas'];
+$kelas = $_GET['kelas'];
 ?>
 
 
@@ -190,7 +190,7 @@ $kelas = $_SESSION['kelas'];
                                             </div>
 
                                         </div>
-                                        <a href="./dataSiswa.php" class="btn btn-warning text-white">Kembali</a>
+                                        <a href="./dataUser.php?nama_kelas=<?php echo $kelas ?>" class="btn btn-warning text-white">Kembali</a>
                                         <button class="btn btn-primary " type="submit" style="float: right;">Save</button>
                                     </form>
                                 </div>
