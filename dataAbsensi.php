@@ -135,7 +135,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>NO</th>
                                                 <th>Nama</th>
                                                 <th>Keterangan</th>
                                                 <th>Tanggal</th>

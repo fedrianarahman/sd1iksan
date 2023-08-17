@@ -132,7 +132,7 @@ $kelas= $_SESSION['kelas'];
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>NO</th>
                                                 <th>Nama</th>
                                                 <th>NIS</th>
                                                 <th>NISN</th>
@@ -144,7 +144,7 @@ $kelas= $_SESSION['kelas'];
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa,raport.status_raport AS status_raport, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role  LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
+                                            $ambilDataSiswa = mysqli_query($conn, "SELECT user.id AS id_siswa, user.nama AS nama_siswa, user.email AS email_siswa, user.kelas AS kelas_siswa, user.no_hp AS no_hp_siswa, user.nama_wali_murid AS nama_ibu, user.nis AS nis_siswa, user.nisn AS nisn_siswa,raport.status_raport AS status_raport,raport.kelas AS kelas,raport.wali_kelas AS wali_kelas, MAX(raport.id) AS raport_siswa FROM user INNER JOIN role ON role.id = user.role  LEFT JOIN raport ON raport.idSiswa = user.id WHERE role.id = '4' GROUP BY user.id");
                                             $i = 1;
                                             while ($data = mysqli_fetch_array($ambilDataSiswa)) {
                                             if ($data['kelas_siswa'] == $kelas ) {
@@ -154,10 +154,13 @@ $kelas= $_SESSION['kelas'];
                                                 <td><?php echo $data['nama_siswa']?></td>
                                                 <td><?php echo $data['nis_siswa']?></td>
                                                 <td><?php echo $data['nisn_siswa']?></td>
-                                                <td><?php if ($data['raport_siswa']) {
-                                                    echo "<span class='badge badge-success text-white'>Sudah Terisi</span>";
-                                                } else {
+                                                <td><?php if ($data['status_raport'] == null) {
                                                     echo"<span class='badge  badge-danger text-white'>belum Ada Nilai</span>";
+                                                } elseif ($data['status_raport']=='belum selesai') {
+                                                    echo "<span class='badge badge-primary text-white'>Belum Lengkap</span>";
+                                                } else{
+                                                    echo "<span class='badge badge-success text-white'>Lengkap</span>";
+                                                    
                                                 }
                                                 ?></td>
                                                 <td><?php echo $data['nama_ibu']?></td>
@@ -165,14 +168,22 @@ $kelas= $_SESSION['kelas'];
                                                 <td>
 													<div class="d-flex">
                                                         <?php
-                                                        if ($data['raport_siswa']) {
+                                                        if ($data['status_raport']== null) {
                                                            
                                                         ?>
-                                                        <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+                                                        <a href="addRaport.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>&nama_siswa=<?php echo $data['nama_siswa'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-plus"></i></a>
                                                         <?php }?>
-                                                        
-														<a href="addRaport.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>&nama_siswa=<?php echo $data['nama_siswa'] ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-plus"></i></a>
-														
+                                                        <?php
+                                                        if ($data['status_raport']== 'belum selesai') {
+                                                        ?>
+                                                         <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+                                                         <a href="./editRaport.php?id_siswa=<?php echo $data['id_siswa']?>&nama_siswa=<?php echo $data['nama_siswa']?>&kelas=<?php echo $data['kelas']?>&wali_kelas=<?php echo $data['wali_kelas'] ?>" class="btn btn-primary me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-pencil-alt"></i></a>
+                                                        <?php }?>
+														<?php
+                                                        if ($data['status_raport']=='selesai') {
+                                                        ?>
+                                                         <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+														<?php }?>
 													</div>												
 												</td>												
                                             </tr>

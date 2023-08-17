@@ -132,7 +132,7 @@ $kelas = $_GET['nama_kelas'];
                                     <table id="example4" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>NO</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
                                                 <th>Role</th>

@@ -136,14 +136,14 @@ $namaSiswa = $_GET['nama_siswa'];
                                                     <div class="mb-3">
                                                         <label class="text-label form-label"> Mata Pelajaran</label>
                                                         <!-- id siswa -->
-                                                        <input hidden  type="text" name="idSiswa" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value=" <?php echo $dataSiswa['id'] ?>">
+                                                        <input hidden req  type="text" name="idSiswa" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value=" <?php echo $dataSiswa['id'] ?>" >
                                                        
                                                         <!-- kelas siswa -->
                                                         <input hidden  type="text" name="kelas" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataSiswa['kelas'] ?>">
                                                         <!-- wali kelas -->
                                                         <input hidden type="text" name="wali_kelas" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $_SESSION['nama'] ?>">
                                                         <input hidden type="text" name="mapel_id[]" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataPelajaran['id'] ?>">
-                                                        <input type="text" name="nama_siswa" class="form-control " style="border-radius: 0; background:#F5F5F5; font-weight: 700;" placeholder="nama siswa" readonly required value="<?php echo strtoupper($dataPelajaran['mapel']) ?>">
+                                                        <input type="text" name="nama_siswa" class="form-control " style="border-radius: 0; background:#F5F5F5; font-weight: 700;" placeholder="nama siswa" readonly required value="<?php echo strtoupper($dataPelajaran['mapel']) ?>" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
@@ -155,19 +155,19 @@ $namaSiswa = $_GET['nama_siswa'];
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Deskrpisi Nilai</label>
-                                                        <input type="text" name="deskripsi_nilai[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Pelajaran" required>
+                                                        <input type="text" required name="deskripsi_nilai[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Pelajaran" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Nilai Keterampilan</label>
-                                                        <input type="number" name="nilai_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Keterampilan" required>
+                                                        <input type="number" required name="nilai_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Keterampilan" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Deskrpisi Keterampilan</label>
-                                                        <input type="text" name="deskripsi_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Keterampilan" required>
+                                                        <input type="text" required name="deskripsi_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Keterampilan" >
                                                     </div>
                                                 </div>
                                             <?php } ?>
@@ -191,19 +191,19 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-4 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">izin</label>
-                                                    <input type="number" name="izin" class="form-control" style="border-radius: 0;" placeholder="jumlah izin" required value="<?php echo $dataAbsensiSiswa['jumlah_izin']  ?>">
+                                                    <input type="number" name="izin" class="form-control" style="border-radius: 0;" placeholder="jumlah izin"  value="<?php echo $dataAbsensiSiswa['jumlah_izin']  ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Sakit</label>
-                                                    <input type="number" name="sakit" class="form-control" style="border-radius: 0;" placeholder="jumlah sakit" required value="<?php echo $dataAbsensiSiswa['jumlah_sakit']  ?>">
+                                                    <input type="number" name="sakit" class="form-control" style="border-radius: 0;" placeholder="jumlah sakit"  value="<?php echo $dataAbsensiSiswa['jumlah_sakit']  ?>" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Tanpa Keterangan</label>
-                                                    <input type="number" name="alpha" class="form-control" style="border-radius: 0;" placeholder="jumlah alpha" required value="<?php echo $dataAbsensiSiswa['jumlah_alpa']  ?>">
+                                                    <input type="number" name="alpha" class="form-control" style="border-radius: 0;" placeholder="jumlah alpha"  value="<?php echo $dataAbsensiSiswa['jumlah_alpa'] ?>" required>
                                                 </div>
                                             </div>
                                             <hr>
@@ -231,7 +231,7 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Keterangan Sikap Sosial</label>
-                                                    <input type="text" name="keterangan_sikap_sosial" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Sosial" required>
+                                                    <input type="text" name="keterangan_sikap_sosial" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Sosial" required >
                                                 </div>
                                             </div>
                                             <hr>
@@ -311,8 +311,8 @@ $namaSiswa = $_GET['nama_siswa'];
                                                 <span class="fw-bold">Status Raport *</span>
                                             </div>
                                             <div class="col-lg-12 mb-2">
-                                                <label class="radio-inline me-3"><input type="radio" name="status_raport" value="belum selesai">Belum Selesai</label>
-                                                    <label class="radio-inline me-3"><input type="radio" name="status_raport" value="selesai">Selesai</label>
+                                                <label class="radio-inline me-3"><input required type="radio" name="status_raport" value="belum selesai">Belum Selesai</label>
+                                                    <label class="radio-inline me-3" ><input required type="radio" name="status_raport" value="selesai">Selesai</label>
                                             </div>
                                         </div>
                                         <a href="./dataNilaiSiswa.php" class="btn btn-warning text-white">Kembali</a>

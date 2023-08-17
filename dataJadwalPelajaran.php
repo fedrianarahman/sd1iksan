@@ -100,8 +100,8 @@ $nama_kelas = $_GET['nama_kelas'];
 			<div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Bootstrap</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Jadwal Pelajaran</a></li>
+						<!-- <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li> -->
 					</ol>
 				</div>
 
@@ -143,7 +143,7 @@ $nama_kelas = $_GET['nama_kelas'];
 									<table class="table table-responsive-md">
 										<thead>
 											<tr>
-												<th style="width:80px;"><strong>#</strong></th>
+												<th style="width:80px;"><strong>Jam</strong></th>
 												<th><strong>Senin</strong></th>
 												<th><strong>Selasa</strong></th>
 												<th><strong>Rabu</strong></th>
@@ -198,9 +198,11 @@ $nama_kelas = $_GET['nama_kelas'];
 													</td>
 													<?php }?>
 												</tr>
+												
 											<?php } ?>
 										</tbody>
 									</table>
+									<a href="./cetakJadwal.php?id=<?php echo $id ?>" target="_blank" class="btn btn-sm btn-primary float-end">Unduh</a>
 								</div>
 							</div>
 						</div>

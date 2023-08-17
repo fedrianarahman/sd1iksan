@@ -237,7 +237,21 @@ if (!isset($_SESSION['nama'])) {
     ?>
         <script src="js/styleSwitcher.js"></script>
     <?php } ?>
-
+    <script>
+    const checkboxes = document.querySelectorAll('.form-check-input');
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            const rowIndex = this.getAttribute('data-row-index');
+            checkboxes.forEach(otherCheckbox => {
+                if (otherCheckbox !== this && otherCheckbox.getAttribute('data-row-index') === rowIndex) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        }
+    });
+});
+    </script>
 </body>
 
 </html>

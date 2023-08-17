@@ -133,7 +133,7 @@ $kelas= $_SESSION['kelas'];
                                     <table id="example3" class="display" style="min-width: 845px">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+                                                <th>NO</th>
                                                 <th>Nama</th>
                                                 <th>NIS</th>
                                                 <th>NISN</th>

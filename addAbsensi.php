@@ -36,6 +36,7 @@ $kelas = $_GET['kelas'];
 
     <!-- Style css -->
     <link href="css/style.css" rel="stylesheet">
+   
 
 </head>
 
@@ -129,25 +130,25 @@ $kelas = $_GET['kelas'];
                                                     <div class="row">
                                                         <div class="col-md-3" style="margin-top: 30px;">
                                                             <div class="form-check custom-checkbox mb-3 checkbox-success check-xl">
-                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>a" required="" name="hadir[<?php echo $index ?>]" value="hadir">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>a" required="" name="hadir[<?php echo $index ?>]" value="hadir" data-row-index="<?php echo $index ?>">
                                                                 <label class="form-check-label text-success ml-4" for="customCheckBox<?php echo $index ?>a">Hadir</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
                                                             <div class="form-check custom-checkbox mb-3 checkbox-warning check-xl">
-                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>b" required="" name="izin[<?php echo $index ?>]" value="izin">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>b" required="" name="izin[<?php echo $index ?>]" value="izin" data-row-index="<?php echo $index ?>">
                                                                 <label class="form-check-label fw-bold text-warning" for="customCheckBox<?php echo $index ?>b">Izin</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
                                                             <div class="form-check custom-checkbox mb-3 checkbox-primary check-xl">
-                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>c" required="" name="sakit[<?php echo $index ?>]" value="sakit">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>c" required="" name="sakit[<?php echo $index ?>]" value="sakit" data-row-index="<?php echo $index ?>">
                                                                 <label class="form-check-label text-primary" for="customCheckBox<?php echo $index ?>c">Sakit</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3" style="margin-top: 30px; font-weight:bold;">
                                                             <div class="form-check custom-checkbox mb-3 checkbox-danger check-xl">
-                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>d" required="" name="alpa[<?php echo $index ?>]" value="alpa">
+                                                                <input type="checkbox" class="form-check-input" id="customCheckBox<?php echo $index ?>d" required="" name="alpa[<?php echo $index ?>]" value="alpa" data-row-index="<?php echo $index ?>">
                                                                 <label class="form-check-label text-danger" for="customCheckBox<?php echo $index ?>d">Alpa</label>
                                                             </div>
                                                         </div>
@@ -229,7 +230,21 @@ $kelas = $_GET['kelas'];
     ?>
         <script src="js/styleSwitcher.js"></script>
     <?php } ?>
-
+    <script>
+    const checkboxes = document.querySelectorAll('.form-check-input');
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            const rowIndex = this.getAttribute('data-row-index');
+            checkboxes.forEach(otherCheckbox => {
+                if (otherCheckbox !== this && otherCheckbox.getAttribute('data-row-index') === rowIndex) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        }
+    });
+});
+    </script>
 </body>
 
 </html>

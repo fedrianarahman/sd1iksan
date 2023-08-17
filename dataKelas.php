@@ -131,7 +131,7 @@ include "./controller/conn.php";
                                     <table class="table table-responsive-md">
                                         <thead>
                                             <tr>
-                                                <th style="width:80px;"><strong>#</strong></th>
+                                                <th style="width:80px;"><strong>NO</strong></th>
                                                 <th><strong>Kelas</strong></th>
                                                 <th><strong>Aksi</strong></th>
 
