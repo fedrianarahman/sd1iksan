@@ -151,7 +151,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                                             ?>
                                                 <tr>
                                                     <td><?php echo $i++ ?></td>
-                                                    <td><?php echo $dataAbsensi['nama_siswa'] ?></td>
+                                                    <td><?php echo strtoupper($dataAbsensi['nama_siswa']) ?></td>
                                                     <td><?php if ($dataAbsensi['sakit']== null && $dataAbsensi['izin'] == null && $dataAbsensi['alpa']== null) {
                                                         echo '<span class="badge light badge-success text-white">'.$dataAbsensi['hadir'].'</span>';
                                                     }elseif($dataAbsensi['hadir']== null && $dataAbsensi['sakit'] == null && $dataAbsensi['alpa']== null){

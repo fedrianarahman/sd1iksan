@@ -151,7 +151,7 @@ $kelas= $_SESSION['kelas'];
                                             ?>
                                             <tr>
                                                 <td><?php echo $i;?></td>
-                                                <td><?php echo $data['nama_siswa']?></td>
+                                                <td><?php echo strtoupper($data['nama_siswa'])?></td>
                                                 <td><?php echo $data['nis_siswa']?></td>
                                                 <td><?php echo $data['nisn_siswa']?></td>
                                                 <td><?php if ($data['status_raport'] == null) {
