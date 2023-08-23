@@ -164,6 +164,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                                                     <td><?php $tglInput = strtotime($dataAbsensi['created_at']); echo date('F d Y',$tglInput) ?></td>
                                                     <td>
                                                         <a href="./editAbsensi.php?id_absensi=<?php echo $dataAbsensi['id'] ?>" class="btn btn-warning shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+                                                        <a href="./controller/absensi/delete.php?id_absensi=<?php echo $dataAbsensi['id'] ?>" class="btn btn-danger shadow btn-xs sharp me-1"><i class="fas fa-trash-alt"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
