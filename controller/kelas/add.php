@@ -2,7 +2,7 @@
 session_start();
 include("../conn.php");
 
-$kelas = $_POST['kelas'];
+$kelas =strtolower( $_POST['kelas']);
 
 
 $cek = mysqli_query($conn, "SELECT * FROM `kelas` WHERE kelas like '%".$kelas."%'"); 

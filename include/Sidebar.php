@@ -26,7 +26,7 @@ $idKelas = $_SESSION['kelas'];
 							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access'");
 							while ($dataKelas = mysqli_fetch_array($query)) {
 							?>
-							<li><a href="dataUser.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>">Data Siswa <?php echo $dataKelas['kelas']?></a></li>
+							<li><a href="dataUser.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>">Data Siswa <?php echo ucwords($dataKelas['kelas'])?></a></li>
 							<?php }?>
                         </ul>
                     </li>
@@ -47,7 +47,7 @@ $idKelas = $_SESSION['kelas'];
 							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access'");
 							while ($dataKelas = mysqli_fetch_array($query)) {
 							?>
-							<li><a href="dataJadwalPelajaran.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>"><?php echo $dataKelas['kelas']?></a></li>
+							<li><a href="dataJadwalPelajaran.php?id=<?php echo $dataKelas['id']?>&nama_kelas=<?php echo $dataKelas['kelas']?>"><?php echo ucwords($dataKelas['kelas'])?></a></li>
 							<?php }?>
                         </ul>
                     </li>

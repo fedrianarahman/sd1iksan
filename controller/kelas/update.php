@@ -4,7 +4,7 @@ session_start();
 include "../conn.php";
 
 $id = $_POST['id'];
-$kelas = $_POST['kelas'];
+$kelas = strtolower($_POST['kelas']);
 
 
 $query = mysqli_query($conn, "UPDATE `kelas` SET `kelas`='$kelas' WHERE `id`='$id'");
