@@ -149,25 +149,25 @@ $namaSiswa = $_GET['nama_siswa'];
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Nilai</label>
-                                                        <input type="number" name="nilai[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Pelajaran" required>
+                                                        <input type="number" name="nilai[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Pelajaran" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Deskrpisi Nilai</label>
-                                                        <input type="text" required name="deskripsi_nilai[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Pelajaran" >
+                                                        <input type="text"  name="deskripsi_nilai[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Pelajaran" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Nilai Keterampilan</label>
-                                                        <input type="number" required name="nilai_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Keterampilan" >
+                                                        <input type="number"  name="nilai_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Nilai Keterampilan" >
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-2">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label">Deskrpisi Keterampilan</label>
-                                                        <input type="text" required name="deskripsi_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Keterampilan" >
+                                                        <input type="text"  name="deskripsi_keterampilan[]" class="form-control" style="border-radius: 0;" placeholder="Deskripsi Nilai Keterampilan" >
                                                     </div>
                                                 </div>
                                             <?php } ?>
@@ -213,25 +213,25 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label"></label>
-                                                    <input type="text" name="sikap_spritual" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Sikap Spritual" required>
+                                                    <input type="text" name="sikap_spritual" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Sikap Spritual" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Keterangan Sikap Spritual</label>
-                                                    <input type="text" name="keterangan_sikap_spritual" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Spritual"  required>
+                                                    <input type="text" name="keterangan_sikap_spritual" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Spritual"  >
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label"></label>
-                                                    <input type="text" name="sikap_sosial" class="form-control" style="border-radius: 0; background:#F5F5F5;" placeholder="Sikap Sosial" readonly required>
+                                                    <input type="text" name="sikap_sosial" class="form-control" style="border-radius: 0; background:#F5F5F5;" placeholder="Sikap Sosial" readonly >
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Keterangan Sikap Sosial</label>
-                                                    <input type="text" name="keterangan_sikap_sosial" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Sosial" required >
+                                                    <input type="text" name="keterangan_sikap_sosial" class="form-control" style="border-radius: 0;" placeholder="Keterangan Sikap Sosial"  >
                                                 </div>
                                             </div>
                                             <hr>
@@ -241,37 +241,37 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Tinggi Badan</label>
-                                                    <input type="text" name="tinggi_badan" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Tinggi Badan" required>
+                                                    <input type="text" name="tinggi_badan" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Tinggi Badan" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Tingi Badan Semester Satu</label>
-                                                    <input type="text" name="tinggi_badan_semester_satu" class="form-control" style="border-radius: 0;" placeholder="Tingi Badan Semester Satu" required>
+                                                    <input type="text" name="tinggi_badan_semester_satu" class="form-control" style="border-radius: 0;" placeholder="Tingi Badan Semester Satu" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Tingi Badan Semester Dua</label>
-                                                    <input type="text" name="tinggi_badan_semester_dua" class="form-control" style="border-radius: 0;" placeholder="Tingi Badan Semester Dua" required>
+                                                    <input type="text" name="tinggi_badan_semester_dua" class="form-control" style="border-radius: 0;" placeholder="Tingi Badan Semester Dua" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Berat Badan</label>
-                                                    <input type="text" name="berat_badan" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Berat Badan" required>
+                                                    <input type="text" name="berat_badan" class="form-control" style="border-radius: 0; background:#F5F5F5;" readonly placeholder="Berat Badan" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Berat Badan Semester Satu</label>
-                                                    <input type="text" name="berat_badan_semester_satu" class="form-control" style="border-radius: 0;" placeholder="Berat Badan Semester Satu" required>
+                                                    <input type="text" name="berat_badan_semester_satu" class="form-control" style="border-radius: 0;" placeholder="Berat Badan Semester Satu" >
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                             <div class="mb-3">
                                                     <label class="text-label form-label">Berat Badan Semester Dua</label>
-                                                    <input type="text" name="berat_badan_semester_dua" class="form-control" style="border-radius: 0;" placeholder="Berat Badan Semester Dua" required>
+                                                    <input type="text" name="berat_badan_semester_dua" class="form-control" style="border-radius: 0;" placeholder="Berat Badan Semester Dua" >
                                                 </div>
                                             </div>
                                             <hr>
@@ -293,7 +293,7 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-6 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Keterangan</label>
-                                                    <input type="text" name="keterangan_kesehatan[]" class="form-control" style="border-radius: 0;" placeholder="Keterangan Kesehatan" required>
+                                                    <input type="text" name="keterangan_kesehatan[]" class="form-control" style="border-radius: 0;" placeholder="Keterangan Kesehatan" >
                                                 </div>
                                             </div>
                                             <?php }?>
@@ -304,7 +304,7 @@ $namaSiswa = $_GET['nama_siswa'];
                                             <div class="col-lg-12 mb-2">
                                                 <div class="mb-3">
                                                     <label class="text-label form-label">Saran</label>
-                                                    <input type="text" name="saran" class="form-control" style="border-radius: 0;" placeholder="saran" required>
+                                                    <input type="text" name="saran" class="form-control" style="border-radius: 0;" placeholder="saran" >
                                                 </div>
                                             </div>
                                             <div class="mb-2">

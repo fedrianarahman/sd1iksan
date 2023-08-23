@@ -7,7 +7,7 @@ $nama = trim(strtolower($_POST['nama']));
 $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $wakel = $_POST['kelas'];
-$role = $_POST['role'];
+$role = 3;
 $username = $_POST['username'];
 $password = $_POST['password'];
 

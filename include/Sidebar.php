@@ -17,12 +17,11 @@ $idKelas = $_SESSION['kelas'];
 					</li>
 					
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-						<i class="fas fa-info-circle"></i>
+						<i class="fas fa-users"></i>
 							<span class="nav-text"> Users</span>
 						</a>
                         <ul aria-expanded="false">
                             <li><a href="dataGuru.php">Data Guru</a></li>
-                            <li><a href="dataRole.php">Data Role</a></li>
 							<?php
 							$query = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas.kelas !='all access'");
 							while ($dataKelas = mysqli_fetch_array($query)) {
@@ -62,6 +61,7 @@ $idKelas = $_SESSION['kelas'];
 							<span class="nav-text">Penilaian Kesehatan</span>
 						</a>
 					</li>
+					
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fab fa-bootstrap"></i>
 							<span class="nav-text">Kelas</span>
@@ -70,6 +70,11 @@ $idKelas = $_SESSION['kelas'];
                             <li><a href="dataKelas.php">Data Kelas</a></li>
                         </ul>
                     </li>
+					<li ><a href="dataRole.php" class="mm-active" aria-expanded="false">
+							<i class="fas fa-info-circle"></i>
+							<span class="nav-text">Data Role</span>
+						</a>
+					</li>
 					<?php }?>
 
 					<!-- guru -->

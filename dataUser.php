@@ -149,7 +149,7 @@ $kelas = $_GET['nama_kelas'];
                                             ?>
                                             <tr>
                                                 <td><?php echo $i?></td>
-                                                <td><?php echo $data['nama_user']?></td>
+                                                <td><?php echo strtoupper($data['nama_user'])?></td>
                                                 <td><?php echo $data['email_user']?></td>
                                                 <td>
                                                 <?php if ($data['role_name']=='guru') {
@@ -163,9 +163,9 @@ $kelas = $_GET['nama_kelas'];
                                                 <td><?php echo $data['wali_kelas']?></td>
                                                 <td>
                                                 <?php if ($data['status_user']=='y') {
-                                                        echo '<a href="./controller/user/updatestatus.php?id='.$data['id_user'].'"><span class="badge light badge-success text-white">aktif</span></a>';
+                                                        echo '<a href="./controller/user/updatestatus.php?id='.$data['id_user'].'&nama_kelas='.$kelas.'"><span class="badge light badge-success text-white">aktif</span></a>';
                                                     } else {
-                                                        echo '<a href="./controller/user/updatestatus.php?id='.$data['id_user'].'"><span class="badge light badge-danger">non aktif</span></a>';
+                                                        echo '<a href="./controller/user/updatestatus.php?id='.$data['id_user'].'&nama_kelas='.$kelas.'"><span class="badge light badge-danger">non aktif</span></a>';
                                                     }
                                                      ?>
                                                 </td>
@@ -173,7 +173,7 @@ $kelas = $_GET['nama_kelas'];
 													<div class="d-flex">
                                                     <a href="./detailSiswa.php?id_siswa=<?php echo $data['id_user']?>&nama_kelas=<?php echo $kelas ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
 														<a href="editSiswa.php?id_siswa=<?php echo $data['id_user']?>&nama_kelas=<?php echo $kelas ?>" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
-														<a href="./controller/siswa/delete.php?id_siswa=<?php echo $data['id_user']?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+														<a href="./controller/siswa/delete.php?id_siswa=<?php echo $data['id_user']?>>&nama_kelas=<?php echo $kelas ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
 													</div>												
 												</td>		
                                             </tr>

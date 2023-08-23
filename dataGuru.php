@@ -135,7 +135,6 @@ $kelas= $_SESSION['kelas'];
                                             <tr>
                                                 <th>NO</th>
                                                 <th>Nama</th>
-                                                <th>NIP</th>
                                                 <th>Tugas Mengajar/Wali Kelas</th>
                                                 <th>Jumlah Ngajar Per Minggu</th>
                                                 <th>Tugas Lain</th>
@@ -156,12 +155,11 @@ $kelas= $_SESSION['kelas'];
 													if ($data['photo']!='') {
 														
 													 ?>
-													 <div class="d-flex align-items-center"><img src="./images/image-profile/<?php echo $data['photo']?>" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama_user']?></span></div>
+													 <div class="d-flex align-items-center"><img src="./images/image-profile/<?php echo $data['photo']?>" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo ucwords($data['nama_user'])?></span></div>
 													 <?php }else{?>
-														<div class="d-flex align-items-center"><img src="./images/image-profile/5.png" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo $data['nama_user']?></span></div>
+														<div class="d-flex align-items-center"><img src="./images/image-profile/5.png" class="rounded-lg me-2" width="24" alt=""> <span class="w-space-no"><?php echo ucwords($data['nama_user'])?></span></div>
 													<?php }?>
 												</td>
-												<td><?php echo $data['nip_guru']?></td>
 												<td><?php if ($data['kelas'] == null) {
                                                     echo "-";
                                                 } else{

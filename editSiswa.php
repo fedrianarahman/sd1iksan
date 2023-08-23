@@ -183,7 +183,7 @@ $idSiswa = $_GET['id_siswa'];
 												</div>
                                                 <div class="col-lg-6 mb-2">
 													<div class="mb-3">
-														<label class="text-label form-label">Nama Ibu</label>
+														<label class="text-label form-label">Nama Orang Tua/Wali</label>
 														<input 
                                                         type="text" 
                                                         name="nama_ibu" 

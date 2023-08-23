@@ -146,7 +146,7 @@ $idGuru = $_GET['id_guru'];
 													<div class="mb-3">
 														<label class="text-label form-label">Wali Kelas</label>
 														
-                                                        <select class="default-select wide form-control" id="validationCustom05" name="kelas">
+                                                        <select class=" form-control" id="validationCustom05" name="kelas">
                                                             <option data-display="Select">Pilih</option>
                                                             <?php
                                                             $ambilDataKelas = mysqli_query($conn, "SELECT * FROM kelas WHERE kelas != 'all access'");
@@ -158,30 +158,6 @@ $idGuru = $_GET['id_guru'];
                                                                 echo 'selected';
                                                               }?>>
                                                               <?php echo $data["kelas"] ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                            
-                                                        </select>
-                                                    
-													</div>
-												</div>
-                                                <div class="col-lg-6 mb-3">
-													<div class="mb-3">
-														<label class="text-label form-label">Role</label>
-														
-                                                        <select class="default-select wide form-control" id="validationCustom05" name="role">
-                                                            <option data-display="Select">Pilih</option>
-                                                            <?php
-                                                            $ambilDataKelas = mysqli_query($conn, "SELECT * FROM role WHERE  role_name= 'guru'");
-                                                            while ($data = mysqli_fetch_array($ambilDataKelas)) {
-                                                            ?>    
-                                                             <option
-                                                              value="<?php echo $data["id"]?>"
-                                                              <?php if ($data['id']== $dataGuru['role']) {
-                                                                echo 'selected';
-                                                              }?>>
-                                                              <?php echo $data["role_name"] ?></option>
                                                             <?php
                                                             }
                                                             ?>

@@ -4,6 +4,7 @@ session_start();
 include "../conn.php";
 
 $id = $_GET["id"];
+$kelas = $_GET['nama_kelas'];
 
 $cek = mysqli_query($conn, "SELECT status FROM user WHERE id='$id'");
 $result = mysqli_fetch_array($cek);
@@ -24,6 +25,6 @@ if($result["status"] == "y"){
   }
 }
 
-header("Location:../../dataUser.php");
+header("Location:../../dataUser.php?nama_kelas=$kelas");
 
 ?>

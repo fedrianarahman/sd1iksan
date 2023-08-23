@@ -10,7 +10,7 @@ $nisn = $_POST['nisn'];
 $no_hp = $_POST['no_telpon'];
 $nama_ibu  =$_POST['nama_ibu'];
 $role  =$_POST['role_id'];
-$kelas = $_POST['kelas_id'];
+$kelas = $_POST['kelas'];
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -23,6 +23,6 @@ if ($query) {
     $_SESSION['status-fail'] = "Data Tidak Berhasil Dirubah";
 }
 
-header("Location:../../dataSiswa.php");
+header("Location:../../dataUser.php?nama_kelas=$kelas");
 
 ?>
