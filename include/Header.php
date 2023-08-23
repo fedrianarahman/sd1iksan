@@ -13,7 +13,7 @@ $idUser = $_SESSION['idSiswa'];
                         </div>
                         <ul class="navbar-nav header-right">
 							<li class="nav-item dropdown notification_dropdown">
-                              <p style="margin-top: 20px; font-weight:bold; color:#999;"><?php echo $_SESSION['nama']?></p>
+                              <p style="margin-top: 20px; font-weight:bold; color:#999;"><?php echo strtoupper($_SESSION['nama'])?></p>
                             </li>
 							<li class="nav-item dropdown notification_dropdown">
                               <p style="margin-top: 20px;"><?php echo $_SESSION['level']?></p>

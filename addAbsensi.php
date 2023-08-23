@@ -122,7 +122,7 @@ $kelas = $_GET['kelas'];
                                                 <div class="col-lg-6 mb-3">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label fw-bold">Nama Siswa</label>
-                                                        <input type="text" name="nama_siswa[]" class="form-control" readonly value="<?php echo $dataNama['nama'] ?>">
+                                                        <input type="text" name="nama_siswa[]" class="form-control fw-bold" readonly value="<?php echo strtoupper($dataNama['nama']) ?>">
                                                         <input hidden type="text" name="kelas" class="form-control" readonly value="<?php echo $kelas ?>">
                                                     </div>
                                                 </div>
