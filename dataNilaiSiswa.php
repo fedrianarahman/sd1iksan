@@ -183,6 +183,7 @@ $kelas= $_SESSION['kelas'];
                                                         if ($data['status_raport']=='selesai') {
                                                         ?>
                                                          <a href="./detailNilaiSiswa.php?id_siswa=<?php echo $data['id_siswa']?>&nama_kelas=<?php echo $data['kelas_siswa'] ?>" class="btn btn-warning me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-eye"></i></a>
+                                                         <a href="./editRaport.php?id_siswa=<?php echo $data['id_siswa']?>&nama_siswa=<?php echo $data['nama_siswa']?>&nama_kelas=<?php echo $data['kelas']?>&wali_kelas=<?php echo $data['wali_kelas'] ?>" class="btn btn-primary me-2 shadow btn-xs sharp" data-toggle="tooltip" title="Lihat"><i class="fa fa-pencil-alt"></i></a>
 														<?php }?>
 													</div>												
 												</td>												

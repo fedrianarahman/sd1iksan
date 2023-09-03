@@ -170,7 +170,7 @@ $waliKelas = $_GET['wali_kelas'];
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
                                                         <label class="text-label form-label"> Mata Pelajaran <?php  ?></label>
-                                                        <input type="text"  name="mapel_id[]" value="<?php echo $dataRaport['mapel_id']  ?>">
+                                                        <input type="text" hidden  name="mapel_id[]" value="<?php echo $dataRaport['mapel_id']  ?>">
                                                         <input type="text" name="mata_pelajaran" class="form-control " style="border-radius: 0; background:#F5F5F5; font-weight: 700;" placeholder="nama siswa" readonly required value="<?php echo strtoupper($dataRaport['mapel']) ?>">
                                                     </div>
                                                 </div>

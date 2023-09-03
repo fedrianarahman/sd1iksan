@@ -159,7 +159,7 @@ $kelas = $_GET['nama_kelas'];
                              <div class="card-body">
                                 <div class="information">
                                     <?php
-                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,kelas.kelas AS kelas FROM user INNER JOIN kelas ON kelas.id = user.kelas WHERE user.id ='$id_siswa'");
+                                    $getInfoSiswa = mysqli_query($conn, "SELECT user.nama AS nama, user.nis AS nis, user.nisn AS nisn,user.kelas AS kelas FROM user  WHERE user.id ='$id_siswa'");
                                     while ($dataSiswa = mysqli_fetch_array($getInfoSiswa)) {
                                     ?>
                                     <div class="row mb-4">
@@ -174,7 +174,7 @@ $kelas = $_GET['nama_kelas'];
                                         <div class="col-md-6">
                                             <div class="information-content">
                                                 <p>Kelas : <span> <?php echo $dataSiswa['kelas']?></span></p>
-                                                <p>Semester : <span> 1 (satu)</span></p>
+                                                <p>Semester : <span> 2 (Dua)</span></p>
                                                 <p>Tahun Pelajaran : <span> 2023/2024</span></p>
                                             </div>
                                         </div>
@@ -182,7 +182,7 @@ $kelas = $_GET['nama_kelas'];
                                     <?php }?>
                                     <div class="line mb-4"></div>
                                 </div>
-                                <h2 class="fw-bolder" style="font-size: 18px;">A.SIKAP</h2>
+                                <h2 class="fw-bolder" style="font-size: 18px;">A.SIKAP </h2>
                                 <?php
                                 $getDataSikap = mysqli_query($conn, "SELECT * FROM raport WHERE idSiswa = '$id_siswa' GROUP BY raport.idSiswa ");
                                 while ($dataSikap = mysqli_fetch_array($getDataSikap)) {
