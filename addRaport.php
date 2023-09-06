@@ -35,6 +35,7 @@ $namaSiswa = $_GET['nama_siswa'];
 
     <!-- Style css -->
     <link href="css/style.css" rel="stylesheet">
+    
 
 </head>
 
@@ -117,13 +118,13 @@ $namaSiswa = $_GET['nama_siswa'];
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="needs-validation" method="POST" action="./controller/raport/add.php">
+                                    <form class="needs-validation" method="POST" id="myForm" action="./controller/raport/add.php">
 
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-3">
-                                                    <label class="text-label form-label">Keterangan Raport</label>
-                                                    <input type="text" name="keterangan_raport" class="form-control" style="border-radius: 0;" placeholder="Keterangan Raport Semester" required>
+                                                    <label class="text-label form-label" for="validationCustom01">Keterangan Raport</label>
+                                                    <input required  type="text" name="keterangan_raport" class="form-control" id="keterangan_raport" style="border-radius: 0;" placeholder="Keterangan Raport Semester" title="Keterangan Raport Wajib Disi">
                                                      <!-- nama siswa -->
                                                      <input hidden  type="text" name="nama_siswa_untuk_raport" class="form-control" style="border-radius: 0;" placeholder="nama siswa" readonly required value="<?php echo $dataSiswa['nama'] ?>">
                                                 </div>
@@ -381,6 +382,16 @@ $namaSiswa = $_GET['nama_siswa'];
     <script src="js/custom.min.js"></script>
     <script src="js/dlabnav-init.js"></script>
     <script src="js/demo.js"></script>
+    <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+        var keteranganInput = document.getElementById('keterangan_raport');
+        if (!keteranganInput.value.trim()) {
+            event.preventDefault(); // Mencegah form untuk disubmit
+            alert("Keterangan Raport Wajib Diisi");
+        }
+    });
+
+</script>
     <?php
     if ($_SESSION['level'] == 'admin') {
         

@@ -113,6 +113,13 @@ $kelas = $_GET['kelas'];
                             <div class="card-body">
                                 <div class="form-validation">
                                     <form class="needs-validation" novalidate="" action="./controller/absensi/add.php" method="POST">
+                                        <div class="row">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6">
+                                            <label class="text-label form-label fw-bold">Tanggal</label>
+                                                <input class="float-end form-control border-success" style="border-radius: 0;" type="date" name="tgl_absen">
+                                            </div>
+                                        </div>
                                         <?php
                                         $getDatasiswa = mysqli_query($conn, "SELECT * FROM user WHERE kelas = '$kelas' AND role = '4' ");
                                         $index = 0;

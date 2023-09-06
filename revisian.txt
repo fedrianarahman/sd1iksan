@@ -42,3 +42,8 @@
 1. raport 
 2. Data siswa di admin berdasarkan kelas done
 3. status raport 
+
+#revisi sidang
+1. Absensi tanggalnya bisa milih
+2. notifikasi jika tidak menginput raport
+3. misalkan belum selesai, maka respon nilai belum selesai

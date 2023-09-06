@@ -161,7 +161,7 @@ date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indo
                                                     }elseif ($dataAbsensi['hadir']==null && $dataAbsensi['sakit']==null && $dataAbsensi['izin']== null) {
                                                         echo '<span class="badge badge-danger light ">'.$dataAbsensi['alpa'].'</span>';
                                                     }?></td>
-                                                    <td><?php $tglInput = strtotime($dataAbsensi['created_at']); echo date('F d Y',$tglInput) ?></td>
+                                                    <td><?php $tglInput = strtotime($dataAbsensi['created_at']); echo date('d F Y',$tglInput) ?></td>
                                                     <td>
                                                         <a href="./editAbsensi.php?id_absensi=<?php echo $dataAbsensi['id'] ?>" class="btn btn-warning shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
                                                         <a href="./controller/absensi/delete.php?id_absensi=<?php echo $dataAbsensi['id'] ?>" class="btn btn-danger shadow btn-xs sharp me-1"><i class="fas fa-trash-alt"></i></a>

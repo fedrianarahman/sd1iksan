@@ -10,9 +10,15 @@ $izin = $_POST['izin'];
 $sakit = $_POST['sakit'];
 $alpa = $_POST['alpa'];
 
-// tanggal
 date_default_timezone_set('Asia/Jakarta'); // Atur zona waktu ke WIB (Waktu Indonesia Bagian Barat)
-$created_at = date('Y-m-d H:i:s');
+
+$created_at = null;
+if (isset($_POST['tgl_absen']) && !empty($_POST['tgl_absen'])) {
+    $created_at = $_POST['tgl_absen'];
+} else {
+    $created_at = date('Y-m-d');
+}
+
 
 for ($i = 0; $i < count($nama); $i++) { 
     $newNama = $nama[$i];
